@@ -52,7 +52,7 @@ We are using proxy configuration to connect with backend angular server- with ba
 1. Run 'nodemon server.js' in the directory '../Satranj/backend' which is running on port no. 4000.
 2. 
     a. Run 'ng serve --proxy-config proxy.conf.json' to run the angular application. Open 127.0.0.1:4200 in your browser.
-        Or
+ ###       Or
     b. run 'ng serve --proxy-config proxy.conf.json --port port_no' to run the application at the specified port. (eg. ng serve --proxy-config proxy.conf.json --port 4000).
 3. 
 
@@ -104,11 +104,11 @@ To get more help on the Angular CLI use `ng help` or go check out the [Angular C
 
     This command shows the file differences which are not yet staged.
 
-4.git reset
+4.  git reset  
 
-    Usage: git reset [file]
+    Usage: git reset [file]  
 
-    This command unstages the file, but it preserves the file contents.
+    This command unstages the file, but it preserves the file contents.  
 
 5. git push
 
