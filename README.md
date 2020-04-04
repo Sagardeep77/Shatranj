@@ -38,17 +38,17 @@ The accepted answer may be the solution to this problem, when it's already happe
 
 ## pre-requisites
 
-### must have latest Angular 8.3.22 or greater and node 11.* or greater
+### must have latest Angular 8.3.22 or greater and node 12.14.1 or greater
 
 
-1. Install exprss in directory(Satranj)   
-     $npm install express
-2. Install body-parser in directory(Satranj)   
-     $npm install body-parser 
-3. Install nodemon globally   
-     $npm install -g nodemon
-4. Initialization of node modules.  
+1. Initialization of node modules.  
      $npm init  
+2. Install exprss in directory(Satranj)   
+     $npm install express
+3. Install body-parser in directory(Satranj)   
+     $npm install body-parser 
+4. Install nodemon globally   
+     $npm install -g nodemon 
 
 
 # Development server
@@ -59,7 +59,7 @@ We are using proxy configuration to connect with backend angular server- with ba
     a. Run 'ng serve --proxy-config proxy.conf.json' to run the angular application. Open 127.0.0.1:4200 in your browser.  
       Or  
     b.Ru n 'ng serve --proxy-config proxy.conf.json --port port_no' to run the application at the specified port. (eg. ng serve --proxy-config proxy.conf.json --port 4000).
-3. 
+
 
 
 # Additional Angular commands
