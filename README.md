@@ -4,12 +4,12 @@ This project was generated with [Angular CLI](https://github.com/angular/angular
 
 
 # How to connect local git repository with github repository(linux .deb)
-1. install git in the specified directory or in root.
+1. install git in the specified directory or in root.  
     $ npm install git 
-2. to set name and email for git globally
-    $ git config -global user.name "YOUR_NAME"
-    $ git config -global user.email "YOUR_EMAIL"
-2. Run the following commands : 
+2. to set name and email for git globally.  
+    $ git config -global user.name "YOUR_NAME".  
+    $ git config -global user.email "YOUR_EMAIL".
+2. Run the following commands :   
     $ git clone https://github.com/roparzhhemon/myremoterepo.git
 
 <!-- 3. Go inside the directory ../Satranj and run the following commands:
@@ -38,17 +38,17 @@ The accepted answer may be the solution to this problem, when it's already happe
 
 ## pre-requisites
 
-1. Install exprss in directory(Satranj)
+1. Install exprss in directory(Satranj)   
      $npm install express
-2. Install body-parser in directory(Satranj) 
+2. Install body-parser in directory(Satranj)   
      $npm install body-parser 
-3. Install nodemon globally 
+3. Install nodemon globally   
      $npm install -g nodemon
 
 
 # Development server
 
-We are using proxy configuration to connect with backend angular server- with backend node server;
+We are using proxy configuration to connect with backend angular server- with backend node server;  
 1. Run 'nodemon server.js' in the directory '../Satranj/backend' which is running on port no. 4000.
 2. 
     a. Run 'ng serve --proxy-config proxy.conf.json' to run the angular application. Open 127.0.0.1:4200 in your browser.
@@ -86,23 +86,21 @@ To get more help on the Angular CLI use `ng help` or go check out the [Angular C
 
 # PULL before PUSH
 
-1. git add
+1. git add  
 
-    Usage: git add [file]
+    Usage: git add [file]  
 
-    This command adds a file to the staging area.
+    This command adds a file to the staging area.  
 
-2. git commit
+2. git commit  
 
-    Usage: git commit -m “[ Type in the commit message]”
+    Usage: git commit -m “[ Type in the commit message]”  
 
-    This command records or snapshots the file permanently in the version history.
+    This command records or snapshots the file permanently in the version history.  
 
-3. git diff
-
-    Usage: git diff
-
-    This command shows the file differences which are not yet staged.
+3. git diff  
+ 
+    Usage: git diff  
 
 4.  git reset  
 
@@ -110,14 +108,14 @@ To get more help on the Angular CLI use `ng help` or go check out the [Angular C
 
     This command unstages the file, but it preserves the file contents.  
 
-5. git push
+5. git push  
 
-    Usage: git push [variable name] master
+    Usage: git push [variable name] master  
 
-    This command sends the committed changes of master branch to your remote repository.
+    This command sends the committed changes of master branch to your remote repository.  
 
-6. git pull
+6. git pull  
 
-    Usage:  git pull [Repository Link]
+    Usage:  git pull [Repository Link]  
 
-    This command fetches and merges changes on the remote server to your working directory.
+    This command fetches and merges changes on the remote server to your working directory.  
