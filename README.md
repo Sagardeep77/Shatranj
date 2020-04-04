@@ -38,12 +38,17 @@ The accepted answer may be the solution to this problem, when it's already happe
 
 ## pre-requisites
 
+### must have latest Angular 8.3.22 or greater and node 11.* or greater
+
+
 1. Install exprss in directory(Satranj)   
      $npm install express
 2. Install body-parser in directory(Satranj)   
      $npm install body-parser 
 3. Install nodemon globally   
      $npm install -g nodemon
+4. Initialization of node modules.  
+     $npm init  
 
 
 # Development server
