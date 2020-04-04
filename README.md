@@ -4,7 +4,7 @@ This project was generated with [Angular CLI](https://github.com/angular/angular
 
 
 # How to connect local git repository with github repository(linux .deb)
-1. install git in the specified directory or in root. 
+1. install git in the specified directory or in root.  
     $ npm install git 
 2. to set name and email for git globally.
     $ git config -global user.name "YOUR_NAME".
