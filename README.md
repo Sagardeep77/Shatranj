@@ -51,9 +51,9 @@ The accepted answer may be the solution to this problem, when it's already happe
 We are using proxy configuration to connect with backend angular server- with backend node server;  
 1. Run 'nodemon server.js' in the directory '../Satranj/backend' which is running on port no. 4000.
 2. 
-    a. Run 'ng serve --proxy-config proxy.conf.json' to run the angular application. Open 127.0.0.1:4200 in your browser.
- ###       Or
-    b. run 'ng serve --proxy-config proxy.conf.json --port port_no' to run the application at the specified port. (eg. ng serve --proxy-config proxy.conf.json --port 4000).
+    a. Run 'ng serve --proxy-config proxy.conf.json' to run the angular application. Open 127.0.0.1:4200 in your browser.  
+      Or  
+    b.Ru n 'ng serve --proxy-config proxy.conf.json --port port_no' to run the application at the specified port. (eg. ng serve --proxy-config proxy.conf.json --port 4000).
 3. 
 
 
