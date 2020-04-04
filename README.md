@@ -10,13 +10,13 @@ This project was generated with [Angular CLI](https://github.com/angular/angular
     $ git config -global user.name "YOUR_NAME".  
     $ git config -global user.email "YOUR_EMAIL".
 2. Run the following commands :   
-    $ git clone https://github.com/roparzhhemon/myremoterepo.git
+    $ git clone https://github.com/Sagardeep77/Satranj
 
 <!-- 3. Go inside the directory ../Satranj and run the following commands:
     $ git init 
     <!-- $ git add -A
     $ git commit -m "First commit from new computer"
-    $ git remote add origin https://github.com/roparzhhemon/myremoterepo.git -->
+    $ git remote add origin https://github.com/Sagardeep77/Satranj -->
 
 <!-- All of that should have been:
 
