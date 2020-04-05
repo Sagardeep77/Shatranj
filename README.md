@@ -7,8 +7,8 @@ This project was generated with [Angular CLI](https://github.com/angular/angular
 1. install git in the specified directory or in root.  
     $ npm install git 
 2. to set name and email for git globally.  
-    $ git config -global user.name "YOUR_NAME".  
-    $ git config -global user.email "YOUR_EMAIL".
+    $ git config --global user.name "YOUR_NAME".  
+    $ git config --global user.email "YOUR_EMAIL".
 2. Run the following commands :   
     $ git clone https://github.com/Sagardeep77/Satranj
 
