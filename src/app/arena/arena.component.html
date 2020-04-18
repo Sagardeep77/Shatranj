@@ -1,2 +1,10 @@
+<form>
+    <input type="text" class="form-control" [(ngModel)]="sentMessage" name="sentMessage">
+    <button type="submit" (click)="sendMessage()">send</button>
+</form>
+
+<p>{{recievedMessage}}</p>
+
+
 <p>Player {{activePlayers | json}} joined</p>
 

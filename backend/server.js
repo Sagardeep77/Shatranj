@@ -35,7 +35,7 @@ io.on('connection', (socket) => {
   socket.on('disconnect', function () {
     let response = connections.searchP2PConnection(socket.id);
     if(response){
-      console.log("Player " + response.player +" disconnected of P2PConection :",response.P2PConnection);
+      // console.log("Player " + response.player +" disconnected of P2PConection :",response.P2PConnection);
       response.P2PConnection.activeConnections--;
       connections.usedCodes[response.P2PConnection.code]=false;
       console.log("reusable code ",response.P2PConnection.code);
@@ -49,30 +49,35 @@ io.on('connection', (socket) => {
 
   socket.on('emit-code', (data) => {
     
-    let activeConnections = connections.establishP2PConnection(socket.id,parseInt(data.code));
+    let response = connections.establishP2PConnection(socket,parseInt(data.code));
     let status;
-    console.log("activeConnections " , activeConnections);
-    if (activeConnections < 3) {
+    
+    if (response.activeConnections == 1) {
       connections.setCodeUsed(parseInt(data.code));
       status = "active";
+    }
+    else if(response.activeConnections == 2){
+      connections.setCodeUsed(parseInt(data.code));
+      status = "active";
+      response.P2PConnection.enableEventSharing();
     }
     else{
       status = "not-active";
     }
     io.emit('on-connect', {
       "Code": data.code,
-      "activePlayers": activeConnections,
+      "activePlayers": response.activeConnections,
       "status": status
     });
   });
 
   //even emit-code ends
 
-  socket.on('new-message', (message) => {
-    console.log(message);
-    // io.emit('message', {type:'new-message', text: message});   
-    io.emit('new-message', "server->client");
-  });
+  // socket.on('new-message', (message) => {
+  //   console.log(message);
+  //   // io.emit('message', {type:'new-message', text: message});   
+  //   io.emit('new-message', "server->client");
+  // });
 
 });
 

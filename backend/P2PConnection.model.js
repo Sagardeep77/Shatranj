@@ -9,16 +9,19 @@ class P2PConnection{
         this.activeConnections=0;
         this.client1=null;
         this.client2=null;
-        
+        this.socket1=null;
+        this.socket2=null;
     }
 
     setClient(client){
         if(this.activeConnections===0){
-            this.client1=client;
+            this.client1=client.id;
+            this.socket1=client;
             this.activeConnections++;
         }
         else if(this.activeConnections===1){
-            this.client2=client;
+            this.client2=client.id;
+            this.socket2=client;
             this.activeConnections++; 
         }
         else{
@@ -26,6 +29,19 @@ class P2PConnection{
         }
         return this.activeConnections;
     }
+
+    enableEventSharing(){
+        this.socket1.on('new-message',(message)=>{
+            this.socket1.broadcast.to(this.socket2.id).emit('new-message',message);
+            console.log("socket 1 :",message);
+        });
+        this.socket2.on('new-message',(message)=>{
+            this.socket2.broadcast.to(this.socket1.id).emit('new-message',message);
+            console.log("socket 2 :",message);
+        });
+    }
+
+
 
 
 };

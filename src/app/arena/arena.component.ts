@@ -11,7 +11,8 @@ import { DataCommunicationService } from '../services/data-communication.service
   styleUrls: ['./arena.component.css']
 })
 export class ArenaComponent implements OnInit {
-  message="Client->sServer";
+  sentMessage;
+  recievedMessage;
   activePlayers:any;
   constructor(private socketService:SocketService,
     private activatedRoute:ActivatedRoute,
@@ -29,9 +30,9 @@ export class ArenaComponent implements OnInit {
         this.activePlayers=data;
       });
 
-      this.socketService.sendMessage(this.message);
       this.socketService.onMessage().subscribe((data)=>{
         console.log(data);
+        this.recievedMessage=data;
       })
       
     }
@@ -41,7 +42,7 @@ export class ArenaComponent implements OnInit {
 
   
   sendMessage(){
-    this.socketService.sendMessage(this.message);
+    this.socketService.sendMessage(this.sentMessage);
     
   }
 

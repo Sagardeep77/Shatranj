@@ -30,7 +30,7 @@ class ConnectionModel {
         let P2PConnection = this.list.connectionWithCode(code);
         if(P2PConnection){
             if(P2PConnection.activeConnections == 2){
-                console.log("P2Pconnection with used code ", P2PConnection);
+                // console.log("P2Pconnection with used code ", P2PConnection);
                 this.usedCodes[code]=true;
                 console.log("code "+code + " is in use");
             }
@@ -62,16 +62,21 @@ class ConnectionModel {
         
         returns the active no of connections and adds the socket to the P2PConneetion
     */
-    establishP2PConnection(socketId, code) {
+    establishP2PConnection(socket, code) {
         let P2PConnection = this.list.connectionWithCode(code);
         if (!P2PConnection) {
             P2PConnection = new P2PConnectionModel(code);
             this.list.addNode(P2PConnection);
             console.log("list size --> ",this.list.getSize());
         }
-        let activeConnections = P2PConnection.setClient(socketId);
+        let activeConnections = P2PConnection.setClient(socket);
         // console.log(P2PConnection);
-        return activeConnections;
+        if(activeConnections <= 2){
+           return { "activeConnections":activeConnections,"P2PConnection":P2PConnection}
+        }
+        else{
+            return { "activeConnections":activeConnections,"P2PConnection":null}
+        }
     }
 }
 
