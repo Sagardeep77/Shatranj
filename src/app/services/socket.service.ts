@@ -10,15 +10,15 @@ import { Observable } from 'rxjs';
 })
 export class SocketService {
   private socket;
-  message:string;
-  constructor(private dataCommService:DataCommunicationService) { }
+  message: string;
+  constructor(private dataCommService: DataCommunicationService) { }
 
-  async connect(code){
-    
+  async connect(code) {
+
     const response = await this.dataCommService.checkCode(code);
-    
+
     // console.log("socketService->",response);
-    if(response){
+    if (response) {
       this.socket = io(this.dataCommService.webSocketUrl);
       this.emitCode(code);
       return "Connected";
@@ -26,26 +26,33 @@ export class SocketService {
     return "Not Connected";
   }
 
-  emitCode(code){
-    this.socket.emit('emit-code',{"code":code});
+  emitCode(code) {
+    this.socket.emit('emit-code', { "code": code });
   }
 
   activeConnections(): Observable<String> {
     let observable = new Observable<String>(observer => {
-        this.socket.on('on-connect', (data: any) => observer.next(data));
+      this.socket.on('on-connect', (data: any) => observer.next(data));
     });
     return observable;
-}
+  }
 
   onMessage(): Observable<String> {
     let observable = new Observable<String>(observer => {
-        this.socket.on('new-message', (data: String) => observer.next(data));
+      this.socket.on('new-message', (data: String) => observer.next(data));
     });
     return observable;
-}
+  }
 
-  sendMessage(message){
-    this.socket.emit('new-message',message);
+  onPlayerLeft(): Observable<String> {
+    let observable = new Observable<String>(observer => {
+      this.socket.on('player-left', (data: String) => observer.next(data));
+    });
+    return observable;
+  }
+
+  sendMessage(message) {
+    this.socket.emit('new-message', message);
   }
 
 }

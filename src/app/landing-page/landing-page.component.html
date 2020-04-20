@@ -1,6 +1,85 @@
+<!-- <app-home-page></app-home-page>
+ -->
 
-<!-- <app-home-page></app-home-page> -->
-<button [routerLink]="['/']">Home</button>
-<button type="button" class="btn btn-success" (click)="generateLink()">Generate</button>
-<input type="text" [disabled]="linkSuccess" value="" name="inputLink" [(ngModel)]="generatedLink">
-<button type="button" *ngIf="!linkSuccess" class="btn btn-primary" (click)="navigateToArena()">Arena</button>
+
+
+<div class="container-fluid">
+
+    
+    <div class="row" id="sliding-door">
+
+        <!--sliding door start -->
+
+        <!--left door start-->
+        <div class="door col-xs-6 left-door" [ngClass]="{'animated slideOutLeft':openDoor}">
+            <div class="left-door-text">
+                <!-- Take a step to <br>become <br>competitive
+          <br>programmer
+        -->
+                <div id="DoorTextFunction">
+                    
+
+                </div>
+                <div id="door-text-function-window">
+                    <div class="doow-text-function-border">
+
+                    </div>
+                    <div class="door-text-window-output">
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        <!--right door end-->
+        <!--right door start-->
+        <div class="door col-xs-6 right-door" [ngClass]="{'animated slideOutRight':openDoor}">
+
+
+            <!-- lock wrapper   start -->
+            <div class="lock-wrapper">
+                <!--lock screen start-->
+                <div class="lock-screen" id="demo">
+                    {{doorPinCode}}
+                </div>
+                <!-- lock screen end-->
+                <!--lock keypad start-->
+                <div class="lock-keypad">
+                    <!--lock keypad row 1-->
+                    <div class="row lock-keypad-row">
+                        <div class="col-xs-4 lock-keypad-button" (click)="buttonClicked('1')">1</div>
+                        <div class="col-xs-4 lock-keypad-button" (click)="buttonClicked('2')">2</div>
+                        <div class="col-xs-4 lock-keypad-button" (click)="buttonClicked('3')">3</div>
+                    </div>
+                    <!--lock keypad row 2-->
+                    <div class="row lock-keypad-row">
+                        <div class="col-xs-4 lock-keypad-button" (click)="buttonClicked('4')">4</div>
+                        <div class="col-xs-4 lock-keypad-button" (click)="buttonClicked('5')">5</div>
+                        <div class="col-xs-4 lock-keypad-button" (click)="buttonClicked('6')">6</div>
+                    </div>
+                    <!--lock keypad row 3-->
+                    <div class="row lock-keypad-row">
+                        <div class="col-xs-4 lock-keypad-button" (click)="buttonClicked('7')">7</div>
+                        <div class="col-xs-4 lock-keypad-button" (click)="buttonClicked('8')">8</div>
+                        <div class="col-xs-4 lock-keypad-button" (click)="buttonClicked('9')">9</div>
+                    </div>
+                    <!--lock keypad row 4-->
+                    <div class="row lock-keypad-row">
+                        <div class="col-xs-4 lock-keypad-button">
+                            <span class="lock-keypad-LED"></span>
+                        </div>
+                        <div class="col-xs-4 lock-keypad-button" (click)="buttonClicked('0')">0</div>
+                        <div class="col-xs-4 lock-keypad-button" (click)="deleteLastElement()">DEL</div>
+                    </div>
+                </div>
+                <!--lock keypad end-->
+            </div>
+            <!-- lock wrapper end -->
+        </div>
+        <!--right door end-->
+    </div>
+    <!--sliding door end-->
+    <div class="row" id="main-content" *ngIf="openDoor">
+            <app-home-page></app-home-page>
+            
+    </div>
+</div>

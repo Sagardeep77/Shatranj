@@ -41,6 +41,15 @@ class P2PConnection{
         });
     }
 
+    playerLeft(number){
+        if(number == 1){
+            this.socket1.broadcast.to(this.socket2.id).emit('player-left',"1");
+        }
+        else if(number==2){
+            this.socket2.broadcast.to(this.socket1.id).emit('player-left',"2");
+        }
+    }
+
 
 
 

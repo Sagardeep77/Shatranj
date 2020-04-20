@@ -1,1 +1,19 @@
-<p>home-page works!</p>
+<!-- <app-home-page></app-home-page> -->
+<!-- <button [routerLink]="['/']">Home</button>
+<button type="button" class="btn btn-success" (click)="generateLink()">Generate</button>
+<input type="text" [disabled]="linkSuccess" value="" name="inputLink" [(ngModel)]="generatedLink">
+<button type="button" *ngIf="!linkSuccess" class="btn btn-primary" (click)="navigateToArena()">Arena</button> -->
+
+<div class="home-page-wrapper">
+    <div class="card-wrapper">
+        <mat-card>
+            <mat-card-content class="card">
+                <button type="button" class="btn btn-success" (click)="generateLink()">Generate</button>
+                <input type="text" class="mat-form-control" [disabled]="linkSuccess" value="" name="inputLink" [(ngModel)]="generatedLink">
+                
+                <button type="button" *ngIf="!linkSuccess" class="btn btn-primary"
+                    (click)="navigateToArena()">Arena</button>
+            </mat-card-content>
+        </mat-card>
+    </div>
+</div>

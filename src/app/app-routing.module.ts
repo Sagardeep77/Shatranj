@@ -1,8 +1,16 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
+import { ArenaComponent } from './arena/arena.component';
+import { HomePageComponent } from './home-page/home-page.component';
+import { LandingPageComponent } from './landing-page/landing-page.component';
 
 
-const routes: Routes = [];
+
+const routes:Routes = [
+  {path :'arena/:code', component:ArenaComponent},
+  {path : '' , component : LandingPageComponent},
+  {path : 'home' , component : HomePageComponent}
+ ];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],

@@ -8,6 +8,8 @@ import { HomePageComponent } from './home-page/home-page.component';
 
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatSliderModule } from '@angular/material/slider';
+import {MatInputModule} from '@angular/material/input';
+
 import { MatCardModule } from  '@angular/material/card';
 // import { SocketIoModule, SocketIoConfig } from 'ngx-socket-io';
 import { FormsModule } from '@angular/forms';
@@ -21,10 +23,10 @@ import { SocketService } from './services/socket.service';
 
 // const config: SocketIoConfig = { url: 'http://localhost:4000', options: {} };
 
-const routes:Routes = [
- {path :'arena/:code', component:ArenaComponent},
+// const routes:Routes = [
+//  {path :'arena/:code', component:ArenaComponent},
  
-];
+// ];
 @NgModule({
   declarations: [
     AppComponent,
@@ -40,9 +42,10 @@ const routes:Routes = [
     BrowserAnimationsModule,
     MatSliderModule,
     MatCardModule,
+    MatInputModule,
     // SocketIoModule.forRoot(config),
     FormsModule,
-    RouterModule.forRoot(routes)
+    // RouterModule.forRoot(routes)
   ],
   providers: [
     DataCommunicationService,

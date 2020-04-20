@@ -8,26 +8,38 @@ import { DataCommunicationService } from '../services/data-communication.service
   styleUrls: ['./landing-page.component.css']
 })
 export class LandingPageComponent implements OnInit {
-  linkSuccess: boolean;
-  generatedLink: string;
-  code: number;
-  constructor(private activatedRoute: ActivatedRoute,
-    private router: Router,
-    private socketService:SocketService,
-    private dataCommService:DataCommunicationService
-  ) { }
+  doorPinCode="";
+  openDoor = false;
+  constructor() { }
+  ngOnInit() { }
 
-  ngOnInit() {
-    this.linkSuccess = true;
+  //funtion to add new digit to lock screen
+  buttonClicked(number) {
+    this.doorPinCode += number;
+    if(this.doorPinCode.length === 4){
+      this.checkPin(this.doorPinCode);
+    }
   }
 
-  generateLink() {
-    this.linkSuccess = false;
-    this.code = Math.floor(Math.random() * Math.floor(100));
-    this.generatedLink = window.location.hostname + ':' + window.location.port + '/arena/' + this.code;
+  //function to remove last digit
+  deleteLastElement() {
+    if (this.doorPinCode.length > 0) {
+      this.doorPinCode = this.doorPinCode.substring(0, this.doorPinCode.length - 1);
+    }
   }
-  navigateToArena() {
-    this.router.navigate(['arena', this.code], { relativeTo: this.activatedRoute });
-    // console.log(this.activatedRoute);
+
+  checkPin(pin){
+    if(parseInt(pin)==1234){
+      this.openDoor = !this.openDoor
+    }
+    console.log(pin);
   }
+
+  // turnGreen() {
+  //   document.getElementsByClassName('lock-keypad-LED')[0].style.backgroundColor = "green";
+  //   document.getElementsByClassName('door')[0].style.transitionDelay = "0.6s";
+  //   document.getElementsByClassName('door')[1].style.transitionDelay = "0.6s";
+  //   document.getElementsByClassName('left-door')[0].style.transform = "translateX(-100%)";
+  //   document.getElementsByClassName('right-door')[0].style.transform = "translateX(100%)";
+  // }
 }

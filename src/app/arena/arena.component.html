@@ -1,10 +1,105 @@
-<form>
-    <input type="text" class="form-control" [(ngModel)]="sentMessage" name="sentMessage">
-    <button type="submit" (click)="sendMessage()">send</button>
-</form>
+<!-- <div class="container-fluid" *ngIf="activePlayers">
+    <div class="row">
+        <mat-card>
+            <form>
+                <input type="text" class="form-control" [(ngModel)]="sentMessage" name="sentMessage">
+                <button type="submit" (click)="sendMessage()">send</button>
+            </form>
+        </mat-card>
+    </div>
 
-<p>{{recievedMessage}}</p>
+    <div class="row">
+        <div class="col-xs-6">
+            <mat-card  *ngFor="let message of sentMessages">{{message}}</mat-card>
+        </div>
+        <div class="col-xs-6">
+            <mat-card *ngFor="let message of recievedMessages">{{message}}</mat-card>
+        </div>
+    </div>
+</div>
 
 
-<p>Player {{activePlayers | json}} joined</p>
 
+<p>Player {{activePlayers | json}} joined</p> -->
+
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
+    integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css"
+    integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
+
+<link rel="stylesheet" type="text/css"
+    href="https://cdnjs.cloudflare.com/ajax/libs/malihu-custom-scrollbar-plugin/3.1.5/jquery.mCustomScrollbar.min.css">
+
+
+<div *ngIf="arenaStatus else onePlayer" class="container-fluid h-100">
+    <div class="row justify-content-center h-100">
+        <div class="col-md-8 col-xl-6 chat">
+            <div class="card">
+                <div class="card-header msg_head">
+                    <div class="d-flex bd-highlight">
+                        <div class="img_cont" >
+                            <img src="https://i.pinimg.com/originals/df/25/e3/df25e39d7400f1bbcb7adf695063faaa.jpg"
+                                class="rounded-circle user_img">
+                            <span class="online_icon"></span>
+                        </div>
+                        <div class="user_info">
+                            <span>Chat with Opponent</span>
+                            <p>{{messages.length}}</p>
+                        </div>
+                        <div class="video_cam">
+                            <span><i class="fas fa-video"></i></span>
+                            <span><i class="fas fa-phone"></i></span>
+                        </div>
+                    </div>
+                    <span id="action_menu_btn"><i class="fas fa-ellipsis-v"></i></span>
+                    <div class="action_menu">
+                        <ul>
+                            <li><i class="fas fa-user-circle"></i> View profile</li>
+                            <li><i class="fas fa-users"></i> Add to close friends</li>
+                            <li><i class="fas fa-plus"></i> Add to group</li>
+                            <li><i class="fas fa-ban"></i> Block</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="card-body msg_card_body">
+                    <div *ngFor="let message of messages">
+                        <div *ngIf="message.sender == 'self'" class="d-flex justify-content-start mb-4">
+                            <div class="img_cont_msg">
+                                <img src="https://static.turbosquid.com/Preview/001292/481/WV/_D.jpg"
+                                    class="rounded-circle user_img_msg">
+                            </div>
+                            <div class="msg_cotainer">
+                                {{message.text}}
+                            </div>
+                        </div>
+                        <div *ngIf="message.sender == 'opponent'" class="d-flex justify-content-end mb-4">
+                            <div class="msg_cotainer_send">
+                                {{message.text}}
+                            </div>
+                            <div class="img_cont_msg">
+                                <img src="https://i.pinimg.com/originals/df/25/e3/df25e39d7400f1bbcb7adf695063faaa.jpg"class="rounded-circle user_img_msg">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="card-footer">
+                    <form>
+                        <div class="input-group">
+                            <div class="input-group-append">
+                                <span class="input-group-text attach_btn"><i class="fas fa-paperclip"></i></span>
+                            </div>
+                            <textarea class="form-control" [(ngModel)]="sentMessage" name="sentMessage"class="form-control type_msg" placeholder="Type your message..."></textarea>
+                            <div class="input-group-append">
+                                <span class="input-group-text send_btn" type="submit" (click)="sendMessage()"> <i class="fas fa-location-arrow"></i></span>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<ng-template #onePlayer>
+    <h3>{{status}}</h3>
+</ng-template>

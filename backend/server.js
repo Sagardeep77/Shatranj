@@ -37,6 +37,7 @@ io.on('connection', (socket) => {
     if(response){
       // console.log("Player " + response.player +" disconnected of P2PConection :",response.P2PConnection);
       response.P2PConnection.activeConnections--;
+      // response.P2PConnection.playerLeft(parseInt(response.player));
       connections.usedCodes[response.P2PConnection.code]=false;
       console.log("reusable code ",response.P2PConnection.code);
       return null; 

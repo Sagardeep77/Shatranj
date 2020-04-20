@@ -1,0 +1,15 @@
+.home-page-wrapper{
+    margin-left:20vw;
+    margin-right:20vw;
+    margin-top:25vh;
+    margin-bottom: 25vh;
+    height: 100vh;
+}
+
+.card{
+    border-radius: 3px;
+    background-color: rgb(206, 187, 184);
+    padding-top: 10vh;
+    width: 60vw;
+    min-height: 200px;
+}
