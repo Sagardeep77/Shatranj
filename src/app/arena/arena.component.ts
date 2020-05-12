@@ -23,11 +23,14 @@ export class ArenaComponent implements OnInit {
   messages = new Array<Message>();
   arenaStatus: boolean;
   status:string;
+  playerNo:number;
+  joinedFirst:boolean = false;
+ 
   constructor(private socketService:SocketService,
     private activatedRoute:ActivatedRoute,
     private dataCommService:DataCommunicationService,
-    private route : Router) {
-    
+    private route : Router,
+    private arenaService:ArenaService) {
    }
 
   async ngOnInit() {
@@ -40,9 +43,16 @@ export class ArenaComponent implements OnInit {
         if(this.activePlayers.activePlayers == 1){
           this.arenaStatus = false;
           this.status="Waiting for player 2"
+          this.joinedFirst = true;
         }
         else{
           this.arenaStatus = true;
+          if(this.joinedFirst === true){
+            this.playerNo = 1;
+          }
+          else{
+            this.playerNo = 2;
+          }
         }
       });
 

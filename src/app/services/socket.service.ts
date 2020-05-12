@@ -3,6 +3,7 @@ import * as io from 'socket.io-client';
 
 import { DataCommunicationService } from './data-communication.service';
 import { Observable } from 'rxjs';
+import { ChessPiece } from '../models/gameState.model';
 // import { environment } from '../environments/environment';
 
 @Injectable({
@@ -53,6 +54,17 @@ export class SocketService {
 
   sendMessage(message) {
     this.socket.emit('new-message', message);
+  }
+
+  sendDragDropData(data){
+    this.socket.emit('drop-successful',data);
+  }
+
+  getOpponentTurn(){
+    let observable = new Observable<ChessPiece>(observer => {
+      this.socket.on('opponent-turn', (data:ChessPiece) => observer.next(data));
+    });
+    return observable;
   }
 
 }

@@ -1,0 +1,9 @@
+<div *ngIf="chessPiece; else nothing" class="{{chessPieceClass}}" [ngClass]="{'chess-piece-rotate':playerNumber(),'chess-place-available':isAvailablePlace}" (mouseenter)="pieceHover($event)" (mouseleave)="pieceHover($event)" [draggable]="canDrag" (dragstart)="handleDragStart($event)"
+    (dragenter)="handleDragEnter($event)" (dragover)="handleDragOver($event)" #draggableDiv>
+
+</div>
+
+<ng-template #nothing>
+    <div style="width: 100%; height: 100%;" [ngClass]="{'chess-place-available':isAvailablePlace}"></div>
+
+</ng-template>

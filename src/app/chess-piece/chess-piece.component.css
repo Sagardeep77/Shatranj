@@ -1,0 +1,132 @@
+/* Black chess pieces */
+
+.piece-black-king {
+    background: url("./images/black/king.png");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    width: 100%;
+    height: 100%;
+    background-color: gray;
+}
+
+.piece-black-queen {
+    background: url("./images/black/queen.png");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    width: 100%;
+    height: 100%;
+    background-color: gray;
+}
+
+.piece-black-bishop {
+    background: url("./images/black/bishop.png");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    width: 100%;
+    height: 100%;
+    background-color: gray;
+}
+
+.piece-black-knight {
+    background: url("./images/black/knight.png");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    width: 100%;
+    height: 100%;
+    background-color: gray;
+}
+
+.piece-black-rook {
+    background: url("./images/black/rook.png");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    width: 100%;
+    height: 100%;
+    background-color: gray;
+}
+
+.piece-black-pawn {
+    background: url("./images/black/pawn.png");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    width: 100%;
+    height: 100%;
+    background-color: gray;
+}
+
+
+/* White chess pieces */
+
+.piece-white-king {
+    background: url("./images/white/king.png");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    width: 100%;
+    height: 100%;
+    background-color: mediumslateblue;
+}
+
+.piece-white-queen {
+    background: url("./images/white/queen.png");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    width: 100%;
+    height: 100%;
+    background-color: mediumslateblue;
+}
+
+.piece-white-bishop {
+    background: url("./images/white/bishop.png");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    width: 100%;
+    height: 100%;
+    background-color: mediumslateblue;
+}
+
+.piece-white-knight {
+    background: url("./images/white/knight.png");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    width: 100%;
+    height: 100%;
+    background-color: mediumslateblue;
+}
+
+.piece-white-rook {
+    background: url("./images/white/rook.png");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    width: 100%;
+    height: 100%;
+    background-color: mediumslateblue;
+}
+
+.piece-white-pawn {
+    background: url("./images/white/pawn.png");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    width: 100%;
+    height: 100%;
+    background-color: mediumslateblue;
+}
+
+.chess-piece-rotate {
+    transform: rotate(180deg);
+}
+
+.chess-place-available {
+    border: 3px solid brown;
+}

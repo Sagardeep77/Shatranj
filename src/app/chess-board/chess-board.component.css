@@ -1,0 +1,95 @@
+/* Prevent the text contents of draggable elements from being selectable. */
+
+[draggable] {
+    -moz-user-select: none;
+    -khtml-user-select: none;
+    -webkit-user-select: none;
+    user-select: none;
+    /* Required to make elements draggable in old WebKit */
+    -khtml-user-drag: element;
+    -webkit-user-drag: element;
+}
+
+.body-chess {
+    margin: 0;
+    padding: 0;
+    background: #ddd;
+    height: 100vh;
+    /* it can be change */
+    overflow: visible;
+}
+
+.board {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 80vh;
+    height: 80vh;
+    transition: 0.5s;
+    background: black;
+    overflow: visible;
+}
+
+.board-black {
+    transform: translate(-50%, -50%);
+    box-shadow: -20px 20px 20px rgba(0, 0, 0, .5);
+    border-radius: 5px;
+}
+
+.board-white {
+    transform: translate(-50%, -50%) rotate(180deg);
+    box-shadow: 20px -20px 20px rgba(0, 0, 0, .5);
+    border-radius: 5px;
+}
+
+.board-black:hover {
+    /* top: 45%; */
+    box-shadow: -50px 50px 50px rgba(0, 0, 0, .5);
+    overflow: visible;
+}
+
+.board-white:hover {
+    box-shadow: 50px -50px 50px rgba(0, 0, 0, .5);
+    overflow: visible;
+}
+
+.row:nth-child(odd) span:nth-child(odd) {
+    width: 10vh;
+    height: 10vh;
+    background-color: white;
+}
+
+.row:nth-child(odd) span:nth-child(even) {
+    width: 10vh;
+    height: 10vh;
+    background-color: black;
+}
+
+.row:nth-child(even) span:nth-child(odd) {
+    width: 10vh;
+    height: 10vh;
+    background-color: black;
+}
+
+.row:nth-child(even) span:nth-child(even) {
+    width: 10vh;
+    height: 10vh;
+    background-color: white;
+}
+
+
+/* .row:nth-child(odd) span:nth-child(odd):hover {
+    background-color: red;
+}
+
+.row:nth-child(odd) span:nth-child(even):hover {
+    background-color: red;
+}
+
+.row:nth-child(even) span:nth-child(odd):hover {
+    background-color: red;
+}
+
+.row:nth-child(even) span:nth-child(even):hover {
+    background-color: red;
+} */
