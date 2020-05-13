@@ -14,7 +14,7 @@ export interface Coordinates {
   styleUrls: ['./chess-piece.component.css']
 })
 export class ChessPieceComponent implements OnInit {
-  @ViewChild('draggableDiv',{static:false}) draggableDiv;
+  @ViewChild('draggableDiv', { static: false }) draggableDiv;
   @Input() chessPiece: ChessPiece;
   @Input() canAccessColor: string;
   @Input() x: number;
@@ -27,10 +27,10 @@ export class ChessPieceComponent implements OnInit {
   newChessPiece;
   isChessPiece: boolean = false;
   subscription;
-  
 
-  constructor(private arenaService: ArenaService) { 
-    
+
+  constructor(private arenaService: ArenaService) {
+
   }
 
   ngOnInit() {
@@ -41,21 +41,21 @@ export class ChessPieceComponent implements OnInit {
     }
   }
 
-  playerNumber(){
-    if(this.arenaService.playerNumber === 2)
+  playerNumber() {
+    if (this.arenaService.playerNumber === 2)
       return true;
     return false;
   }
 
   //function for checking the color type of player with chess-piece type
 
-  checkColor():boolean{
-    if(this.canAccessColor == this.chessPiece.color){
+  checkColor(): boolean {
+    if (this.canAccessColor == this.chessPiece.color) {
       return true;
     }
     return false;
   }
-  
+
 
   //function to set the class of chess piece
   setChessPieceClass(chessPiece) {
@@ -105,47 +105,54 @@ export class ChessPieceComponent implements OnInit {
 
   // function for the hover effect of chess piece (GSAP Animation)
   pieceHover(event) {
-    // console.log(piece)
-    this.canDrag = this.checkColor();
-    if (event.type === "mouseenter" && this.canDrag) {
-      let element = event.target;
-      TweenMax.to(element, 0.4, {
-        autoAlpha: 1,
-        ease: Linear.easeNone,
-        zIndex: 1,
-        scaleX: 1.5,
-        scaleY: 1.5,
-      });
+    if (this.arenaService.isplayerTurn) {
+      // console.log(piece)
+      this.canDrag = this.checkColor();
+      if (event.type === "mouseenter" && this.canDrag) {
+        let element = event.target;
+        TweenMax.to(element, 0.4, {
+          autoAlpha: 1,
+          ease: Linear.easeNone,
+          zIndex: 1,
+          scaleX: 1.5,
+          scaleY: 1.5,
+        });
 
-      this.arenaService.getPieceMoves(this.chessPiece);
-    }
-    if (event.type === "mouseleave" && this.canDrag) {
-      let element = event.target;
-      TweenMax.to(element, 0.4, {
-        autoAlpha: 1,
-        ease: Linear.easeNone,
-        zIndex: 0,
-        scaleX: 1,
-        scaleY: 1
-      });
+        this.arenaService.getPieceMoves(this.chessPiece);
+      }
+      if (event.type === "mouseleave" && this.canDrag) {
+        let element = event.target;
+        TweenMax.to(element, 0.4, {
+          autoAlpha: 1,
+          ease: Linear.easeNone,
+          zIndex: 0,
+          scaleX: 1,
+          scaleY: 1
+        });
 
-      this.arenaService.erasePieceMoves(this.chessPiece);
+        this.arenaService.erasePieceMoves(this.chessPiece);
+      }
     }
   }
 
+  /*
+     This funtion runs when the chess piece start dragging and sets source Cordintaes in arenaService. 
+     This function change the coordinates of the chess piece if the targetCoordinates are valid.
+  */
   handleDragStart(event) {
-    if(!this.canDrag){
+    if (!this.canDrag || !this.arenaService.isplayerTurn) {
       event.preventDefault();
     }
+    this.dragDropEvent.emit(this.chessPiece);
     this.arenaService.setSourceCoordinate(this.x, this.y);
-     this.subscription = this.arenaService.targetCoordinateChange.subscribe((data) => {
-      this.x=data.x;
-      this.y=data.y;
-      this.chessPiece.changeCoordinates(data.x,data.y);
-      this.dragDropEvent.emit(this.chessPiece);
+    this.subscription = this.arenaService.targetCoordinateChange.subscribe((data) => {
+      this.x = data.x;
+      this.y = data.y;
+      this.chessPiece.changeCoordinates(data.x, data.y);
+      
       this.unsubscribe(true);
     });
-    event.dataTransfer.effectAllowed = 'move';
+    event.dataTransfer.effectAllowed = 'move'; 
   }
 
   handleDragEnter(event) {
@@ -164,8 +171,8 @@ export class ChessPieceComponent implements OnInit {
     return false;
   }
 
-  unsubscribe(targetCoordinateRcvd){
-    if(targetCoordinateRcvd){
+  unsubscribe(targetCoordinateRcvd) {
+    if (targetCoordinateRcvd) {
       this.subscription.unsubscribe();
     }
   }
