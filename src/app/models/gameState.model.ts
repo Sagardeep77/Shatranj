@@ -52,6 +52,8 @@ export class ChessBoardState {
     // here we are assuming x as row number and y as column number
     public chessBoard = new Array(8);
     public chessBoardActive = new Array(8);
+    private defeatedPiecesWhite = new Array();
+    private defeatedPiecesBlack = new Array();
 
     constructor() {
         this.chessBoard.length = 8;
@@ -207,7 +209,23 @@ export class ChessBoardState {
             }
         }
     }
+
+    insertDefeatedPiece(chessPiece:ChessPiece){
+        if(chessPiece.color ==="black"){
+            this.defeatedPiecesBlack.push(chessPiece);
+        }
+        else if(chessPiece.color === "white"){
+            this.defeatedPiecesWhite.push(chessPiece);
+        }
+    }
     
+    getDefeatedPiecesWhite(){
+        return this.defeatedPiecesWhite;
+    }
+
+    getDefeatedPiecesBlack(){
+        return this.defeatedPiecesBlack;
+    }
 }
 
 

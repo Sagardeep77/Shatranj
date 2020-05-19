@@ -5,10 +5,6 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { DataCommunicationService } from '../services/data-communication.service';
 
 
-export interface Message {
-  "text" : String;
-  "sender":String;
-}
 
 @Component({
   selector: 'app-arena',
@@ -19,8 +15,7 @@ export interface Message {
 export class ArenaComponent implements OnInit {
   
   activePlayers:any;
-  sentMessage:String;
-  messages = new Array<Message>();
+ 
   arenaStatus: boolean;
   status:string;
   playerNo:number;
@@ -35,9 +30,8 @@ export class ArenaComponent implements OnInit {
 
   async ngOnInit() {
     let code = <number>this.activatedRoute.snapshot.params.code;
-    let connect = await this.socketService.connect(code)
+    let connect = await this.socketService.connect(code);
     if(connect=="Connected"){
-
       this.socketService.activeConnections().subscribe((data)=>{
         this.activePlayers=data;
         if(this.activePlayers.activePlayers == 1){
@@ -57,16 +51,6 @@ export class ArenaComponent implements OnInit {
       });
 
       
-      this.socketService.onMessage().subscribe((data)=>{
-        // console.log(data);
-        let message : Message;
-        message = {
-          "text" : data,
-          "sender" : 'opponent'
-        }
-        this.messages.push(message);
-      });
-
       this.socketService.onPlayerLeft().subscribe((data)=>{
         this.status="Player "+data+ " left";
       })
@@ -77,14 +61,6 @@ export class ArenaComponent implements OnInit {
   }
 
   
-  sendMessage(){
-    this.socketService.sendMessage(this.sentMessage);
-    let message : Message;
-    message = {
-      "text" : this.sentMessage,
-      "sender" : 'self'
-    }
-    this.messages.push(message);
-  }
+  
 
 }

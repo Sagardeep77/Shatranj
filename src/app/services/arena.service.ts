@@ -18,6 +18,7 @@ export class ArenaService {
   chessBoardState: ChessBoardState;
   playerNumber: number;
   isplayerTurn: boolean = true;
+  canAccessColor: string;
 
   constructor() {
     // this.targetCoordinateChange.subscribe((value) => {
@@ -38,7 +39,7 @@ export class ArenaService {
             then it checks for the valid moves 
               if the move is valid it return truel and change the cchessboard
   */
-  setTargetCoordinate( x, y): boolean {
+  setTargetCoordinate(x, y): boolean {
     this.targetCoordinate = {
       x: x,
       y: y
@@ -76,163 +77,796 @@ export class ArenaService {
 
         let chessPiece: ChessPiece = this.chessBoardState.chessBoard[i][j];
         if (chessPiece) {
-          /* condition for pawn starts */
-          if (chessPiece.type === "pawn") {
+          if (chessPiece.color === this.canAccessColor) {
+            /* condition for pawn starts */
+            if (chessPiece.type === "pawn") {
 
-            /* condition for black pawn*/
-            if (chessPiece.color === "black") {
-              chessPiece.setEmptyMovementArray(); //empty the array
+              /* condition for black pawn*/
+              if (chessPiece.color === "black") {
+                chessPiece.setEmptyMovementArray(); //empty the array
 
-              //for loop to check forward moves
-              for (let k = i - 1; k >= 0 && k >= i - 2; k--) {
+                //for loop to check forward moves
+                for (let k = i - 1; k >= 0 && k >= i - 2; k--) {
 
-                let piece: ChessPiece = this.chessBoardState.chessBoard[k][j];
-                if (piece === undefined) {
+                  let piece: ChessPiece = this.chessBoardState.chessBoard[k][j];
+                  if (piece === undefined) {
 
-                  let coordinates: Coordinates = {
-                    x: k + 1,
-                    y: j + 1
-                  }
-
-                  chessPiece.insertMove(coordinates);
-                  if (chessPiece.getMoveCount() >= 1) {
-                    break;
-                  }
-
-                }
-                else {
-                  if (piece.color != chessPiece.color) {
                     let coordinates: Coordinates = {
                       x: k + 1,
                       y: j + 1
+                    }
+
+                    chessPiece.insertMove(coordinates);
+                    if (chessPiece.getMoveCount() >= 1) {
+                      break;
+                    }
+
+                  }
+                  else {
+                    // if (piece.color != chessPiece.color) {
+                    //   let coordinates: Coordinates = {
+                    //     x: k + 1,
+                    //     y: j + 1
+                    //   }
+                    //   chessPiece.insertMove(coordinates);
+                    // }
+                    break;
+                  }
+                }
+
+                //diagonal opponent case for black pawn
+                if (chessPiece.x > 1) {
+
+                  //condition for left diagonal
+                  if (chessPiece.y > 1 && chessPiece.y <= this.chessBoardState.chessBoard.length) {
+                    let piece: ChessPiece = this.chessBoardState.chessBoard[chessPiece.x - 2][chessPiece.y - 2];
+                    if (piece != undefined) {
+                      if (piece.color != chessPiece.color) {
+                        let coordinates: Coordinates = {
+                          x: piece.x,
+                          y: piece.y
+                        }
+                        chessPiece.insertMove(coordinates);
+
+                      }
+                    }
+                  }
+                  //condition for right diagonal
+                  if (chessPiece.y > 0 && chessPiece.y < this.chessBoardState.chessBoard.length) {
+                    let piece: ChessPiece = this.chessBoardState.chessBoard[chessPiece.x - 2][chessPiece.y];
+                    if (piece != undefined) {
+                      if (piece.color != chessPiece.color) {
+                        let coordinates: Coordinates = {
+                          x: piece.x,
+                          y: piece.y
+                        }
+                        chessPiece.insertMove(coordinates);
+                      }
+                    }
+                  }
+                }
+              }
+              /*condition for black pawn ends*/
+
+              /* condition for white pawn*/
+              else if (chessPiece.color === "white") {
+                chessPiece.setEmptyMovementArray(); //empty the array
+
+                //for loop to check forward moves
+                for (let k = i + 1; k < 8 && k <= i + 2; k++) {
+
+                  let piece: ChessPiece = this.chessBoardState.chessBoard[k][j];
+                  if (piece === undefined) {
+
+                    let coordinates: Coordinates = {
+                      x: k + 1,
+                      y: j + 1
+                    }
+
+                    chessPiece.insertMove(coordinates);
+                    if (chessPiece.getMoveCount() >= 1) {
+                      break;
+                    }
+
+                  }
+                  else {
+                    // if (piece.color != chessPiece.color) {
+                    //   let coordinates: Coordinates = {
+                    //     x: k + 1,
+                    //     y: j + 1
+                    //   }
+                    //   chessPiece.insertMove(coordinates);
+                    // }
+                    break;
+                  }
+                }
+
+                //diagonal opponent case for white pawn
+                if (chessPiece.x < this.chessBoardState.chessBoard.length) {
+
+                  //condition for left diagonal
+                  if (chessPiece.y > 0 && chessPiece.y < this.chessBoardState.chessBoard.length) {
+                    let piece: ChessPiece = this.chessBoardState.chessBoard[chessPiece.x][chessPiece.y];
+                    if (piece != undefined) {
+                      if (piece.color != chessPiece.color) {
+                        let coordinates: Coordinates = {
+                          x: piece.x,
+                          y: piece.y
+                        }
+                        chessPiece.insertMove(coordinates);
+                      }
+                    }
+                  }
+                  //condition for right diagonal
+                  if (chessPiece.y > 1 && chessPiece.y <= this.chessBoardState.chessBoard.length) {
+                    let piece: ChessPiece = this.chessBoardState.chessBoard[chessPiece.x][chessPiece.y - 2];
+                    if (piece != undefined) {
+                      if (piece.color != chessPiece.color) {
+                        let coordinates: Coordinates = {
+                          x: piece.x,
+                          y: piece.y
+                        }
+                        chessPiece.insertMove(coordinates);
+                      }
+                    }
+                  }
+                }
+              }
+              /*condition for white pawn ends*/
+            }
+            /* condition for pawn ends*/
+
+            /* condition for rook starts */
+            else if (chessPiece.type === "rook") {
+              /*for rook we have to check all the directions east, west, north, south */
+
+              chessPiece.setEmptyMovementArray();
+              //for east condition
+              for (let k = i + 1; k < this.chessBoardState.chessBoard.length; k++) {
+                let piece = this.chessBoardState.chessBoard[k][j];
+                if (piece != undefined) {
+                  if (piece.color != chessPiece.color) {
+                    let coordinates: Coordinates = {
+                      x: piece.x,
+                      y: piece.y
                     }
                     chessPiece.insertMove(coordinates);
                   }
                   break;
                 }
-              }
-
-              //diagonal opponent case for black pawn
-              if (chessPiece.x > 1) {
-
-                //condition for left diagonal
-                if (chessPiece.y > 1 && chessPiece.y <= this.chessBoardState.chessBoard.length) {
-                  let piece: ChessPiece = this.chessBoardState.chessBoard[chessPiece.x - 2][chessPiece.y - 2];
-                  if (piece != undefined) {
-                    if (piece.color != chessPiece.color) {
-                      let coordinates: Coordinates = {
-                        x: chessPiece.x - 1,
-                        y: chessPiece.y - 1
-                      }
-                      chessPiece.insertMove(coordinates);
-                      break;
-                    }
-                  }
-                }
-                //condition for right diagonal
-                else if (chessPiece.y > 0 && chessPiece.y < this.chessBoardState.chessBoard.length) {
-                  let piece: ChessPiece = this.chessBoardState.chessBoard[chessPiece.x - 2][chessPiece.y];
-                  if (piece != undefined) {
-                    if (piece.color != chessPiece.color) {
-                      let coordinates: Coordinates = {
-                        x: chessPiece.x - 1,
-                        y: chessPiece.y
-                      }
-                      chessPiece.insertMove(coordinates);
-                    }
-                  }
-                }
-              }
-            }
-            /*condition for black pawn ends*/
-
-            /* condition for white pawn*/
-            else if (chessPiece.color === "white") {
-              chessPiece.setEmptyMovementArray(); //empty the array
-
-              //for loop to check forward moves
-              for (let k = i + 1; k < 8 && k <= i + 2; k++) {
-
-                let piece: ChessPiece = this.chessBoardState.chessBoard[k][j];
-                if (piece === undefined) {
-
+                else if (piece == undefined) {
                   let coordinates: Coordinates = {
                     x: k + 1,
                     y: j + 1
                   }
-
                   chessPiece.insertMove(coordinates);
-                  if (chessPiece.getMoveCount() === 1) {
-                    break;
-                  }
-
                 }
-                else {
+              }
+              //for west condition
+              for (let k = i - 1; k >= 0; k--) {
+                let piece = this.chessBoardState.chessBoard[k][j];
+                if (piece != undefined) {
                   if (piece.color != chessPiece.color) {
                     let coordinates: Coordinates = {
-                      x: k + 1,
-                      y: j + 1
+                      x: piece.x,
+                      y: piece.y
                     }
                     chessPiece.insertMove(coordinates);
                   }
                   break;
                 }
-              }
-
-              //diagonal opponent case for white pawn
-              if (chessPiece.x < this.chessBoardState.chessBoard.length) {
-
-                //condition for left diagonal
-                if (chessPiece.y > 1 && chessPiece.y <= this.chessBoardState.chessBoard.length) {
-                  let piece: ChessPiece = this.chessBoardState.chessBoard[chessPiece.x][chessPiece.y - 2];
-                  if (piece != undefined) {
-                    if (piece.color != chessPiece.color) {
-                      let coordinates: Coordinates = {
-                        x: chessPiece.x,
-                        y: chessPiece.y - 2
-                      }
-                      chessPiece.insertMove(coordinates);
-                      break;
-                    }
+                else if (piece == undefined) {
+                  let coordinates: Coordinates = {
+                    x: k + 1,
+                    y: j + 1
                   }
+                  chessPiece.insertMove(coordinates);
                 }
-                //condition for right diagonal
-                else if (chessPiece.y > 0 && chessPiece.y < this.chessBoardState.chessBoard.length) {
-                  let piece: ChessPiece = this.chessBoardState.chessBoard[chessPiece.x][chessPiece.y];
-                  if (piece != undefined) {
-                    if (piece.color != chessPiece.color) {
-                      let coordinates: Coordinates = {
-                        x: chessPiece.x,
-                        y: chessPiece.y
-                      }
-                      chessPiece.insertMove(coordinates);
+              }
+              //for north condtion
+              for (let k = j - 1; k >= 0; k--) {
+                let piece = this.chessBoardState.chessBoard[i][k];
+                if (piece != undefined) {
+                  if (piece.color != chessPiece.color) {
+                    let coordinates: Coordinates = {
+                      x: piece.x,
+                      y: piece.y
                     }
+                    chessPiece.insertMove(coordinates);
                   }
+                  break;
+                }
+                else if (piece == undefined) {
+                  let coordinates: Coordinates = {
+                    x: i + 1,
+                    y: k + 1
+                  }
+                  chessPiece.insertMove(coordinates);
+                }
+              }
+              //for south direction
+              for (let k = j + 1; k < this.chessBoardState.chessBoard.length; k++) {
+                let piece = this.chessBoardState.chessBoard[i][k];
+                if (piece != undefined) {
+                  if (piece.color != chessPiece.color) {
+                    let coordinates: Coordinates = {
+                      x: piece.x,
+                      y: piece.y
+                    }
+                    chessPiece.insertMove(coordinates);
+                  }
+                  break;
+                }
+                else if (piece == undefined) {
+                  let coordinates: Coordinates = {
+                    x: i + 1,
+                    y: k + 1
+                  }
+                  chessPiece.insertMove(coordinates);
                 }
               }
             }
-            /*condition for white pawn ends*/
-          }
-          /* condition for pawn ends*/
-          else if (chessPiece.type === "rook") {
+            /* condition for rook ends */
 
-          }
-          else if (chessPiece.type === "knight") {
+            /* condition for knight starts */
+            else if (chessPiece.type === "knight") {
+              /*for knight we have to check all the 8 possibilities Up(U) , Down(D), Left(L), Right(R)  */
 
-          }
-          else if (chessPiece.type === "bishop") {
+              chessPiece.setEmptyMovementArray();
+              //for L1 & U2
+              let k = i + 2;
+              let l = j - 1;
+              if (k < this.chessBoardState.chessBoard.length && l>=0) {
+                let piece = this.chessBoardState.chessBoard[k][l];
+                if (piece != undefined) {
+                  if (piece.color != chessPiece.color) {
+                    let coordinates: Coordinates = {
+                      x: piece.x,
+                      y: piece.y
+                    }
+                    chessPiece.insertMove(coordinates);
+                  }
+                }
+                else if (piece == undefined) {
+                  let coordinates: Coordinates = {
+                    x: k + 1,
+                    y: l + 1
+                  }
+                  chessPiece.insertMove(coordinates);
+                }
+              }
+              //for R1 & U2
+              k = i + 2;
+              l = j + 1;
+              if (k < this.chessBoardState.chessBoard.length && l < this.chessBoardState.chessBoard.length) {
+                let piece = this.chessBoardState.chessBoard[k][l];
+                if (piece != undefined) {
+                  if (piece.color != chessPiece.color) {
+                    let coordinates: Coordinates = {
+                      x: piece.x,
+                      y: piece.y
+                    }
+                    chessPiece.insertMove(coordinates);
+                  }
+                }
+                else if (piece == undefined) {
+                  let coordinates: Coordinates = {
+                    x: k + 1,
+                    y: l + 1
+                  }
+                  chessPiece.insertMove(coordinates);
+                }
+              }
 
-          }
-          else if (chessPiece.type === "queen") {
+              //for L1 & D2
+              k = i - 2;
+              l = j - 1;
+              if (k >= 0 && l >= 0) {
+                let piece = this.chessBoardState.chessBoard[k][l];
+                if (piece != undefined) {
+                  if (piece.color != chessPiece.color) {
+                    let coordinates: Coordinates = {
+                      x: piece.x,
+                      y: piece.y
+                    }
+                    chessPiece.insertMove(coordinates);
+                  }
+                }
+                else if (piece == undefined) {
+                  let coordinates: Coordinates = {
+                    x: k + 1,
+                    y: l + 1
+                  }
+                  chessPiece.insertMove(coordinates);
+                }
+              }
 
-          }
-          else if (chessPiece.type === "king") {
+              //for R1 & D2
+              k = i - 2;
+              l = j + 1;
+              if (k >= 0 && l < this.chessBoardState.chessBoard.length) {
+                let piece = this.chessBoardState.chessBoard[k][l];
+                if (piece != undefined) {
+                  if (piece.color != chessPiece.color) {
+                    let coordinates: Coordinates = {
+                      x: piece.x,
+                      y: piece.y
+                    }
+                    chessPiece.insertMove(coordinates);
+                  }
+                }
+                else if (piece == undefined) {
+                  let coordinates: Coordinates = {
+                    x: k + 1,
+                    y: l + 1
+                  }
+                  chessPiece.insertMove(coordinates);
+                }
+              }
 
+              //for L2 & U1
+              k = i - 1;
+              l = j + 2;
+              if (l < this.chessBoardState.chessBoard.length && k>=0) {
+                let piece = this.chessBoardState.chessBoard[k][l];
+                if (piece != undefined) {
+                  if (piece.color != chessPiece.color) {
+                    let coordinates: Coordinates = {
+                      x: piece.x,
+                      y: piece.y
+                    }
+                    chessPiece.insertMove(coordinates);
+                  }
+                }
+                else if (piece == undefined) {
+                  let coordinates: Coordinates = {
+                    x: k + 1,
+                    y: l + 1
+                  }
+                  chessPiece.insertMove(coordinates);
+                }
+              }
+              //for R2 & U1
+              k = i + 1;
+              l = j + 2;
+              if (k < this.chessBoardState.chessBoard.length && l < this.chessBoardState.chessBoard.length) {
+                let piece = this.chessBoardState.chessBoard[k][l];
+                if (piece != undefined) {
+                  if (piece.color != chessPiece.color) {
+                    let coordinates: Coordinates = {
+                      x: piece.x,
+                      y: piece.y
+                    }
+                    chessPiece.insertMove(coordinates);
+                  }
+                }
+                else if (piece == undefined) {
+                  let coordinates: Coordinates = {
+                    x: k + 1,
+                    y: l + 1
+                  }
+                  chessPiece.insertMove(coordinates);
+                }
+              }
+
+              //for L2 & D1
+              k = i - 1;
+              l = j - 2;
+              if (k >= 0 && l >= 0) {
+                let piece = this.chessBoardState.chessBoard[k][l];
+                if (piece != undefined) {
+                  if (piece.color != chessPiece.color) {
+                    let coordinates: Coordinates = {
+                      x: piece.x,
+                      y: piece.y
+                    }
+                    chessPiece.insertMove(coordinates);
+                  }
+                }
+                else if (piece == undefined) {
+                  let coordinates: Coordinates = {
+                    x: k + 1,
+                    y: l + 1
+                  }
+                  chessPiece.insertMove(coordinates);
+                }
+              }
+
+              //for R1 & D2
+              k = i + 1;
+              l = j - 2;
+              if (l >= 0 && k < this.chessBoardState.chessBoard.length) {
+                let piece = this.chessBoardState.chessBoard[k][l];
+                if (piece != undefined) {
+                  if (piece.color != chessPiece.color) {
+                    let coordinates: Coordinates = {
+                      x: piece.x,
+                      y: piece.y
+                    }
+                    chessPiece.insertMove(coordinates);
+                  }
+                }
+                else if (piece == undefined) {
+                  let coordinates: Coordinates = {
+                    x: k + 1,
+                    y: l + 1
+                  }
+                  chessPiece.insertMove(coordinates);
+                }
+              }
+              
+            }
+
+            /*condition for knight ends */
+
+
+            /* condition for bishop starts */
+            else if (chessPiece.type === "bishop") {
+              /*for bishop we have to check all the directions north-east, north-west, south-east, south-west */
+
+              chessPiece.setEmptyMovementArray();
+              //for south-east condition
+              for (let k = i + 1, l = j + 1; k < this.chessBoardState.chessBoard.length && l < this.chessBoardState.chessBoard.length; k++, l++) {
+                let piece = this.chessBoardState.chessBoard[k][l];
+                if (piece != undefined) {
+                  if (piece.color != chessPiece.color) {
+                    let coordinates: Coordinates = {
+                      x: piece.x,
+                      y: piece.y
+                    }
+                    chessPiece.insertMove(coordinates);
+                  }
+                  break;
+                }
+                else if (piece == undefined) {
+                  let coordinates: Coordinates = {
+                    x: k + 1,
+                    y: l + 1
+                  }
+                  chessPiece.insertMove(coordinates);
+                }
+              }
+              //for north-west condition
+              for (let k = i - 1, l = j - 1; k >= 0 && l >= 0; k--, l--) {
+                let piece = this.chessBoardState.chessBoard[k][l];
+                if (piece != undefined) {
+                  if (piece.color != chessPiece.color) {
+                    let coordinates: Coordinates = {
+                      x: piece.x,
+                      y: piece.y
+                    }
+                    chessPiece.insertMove(coordinates);
+                  }
+                  break;
+                }
+                else if (piece == undefined) {
+                  let coordinates: Coordinates = {
+                    x: k + 1,
+                    y: l + 1
+                  }
+                  chessPiece.insertMove(coordinates);
+                }
+              }
+              //for north-east condtion
+              for (let k = i + 1, l = j - 1; k < this.chessBoardState.chessBoard.length && l >= 0; k++, l--) {
+                let piece = this.chessBoardState.chessBoard[k][l];
+                if (piece != undefined) {
+                  if (piece.color != chessPiece.color) {
+                    let coordinates: Coordinates = {
+                      x: piece.x,
+                      y: piece.y
+                    }
+                    chessPiece.insertMove(coordinates);
+                  }
+                  break;
+                }
+                else if (piece == undefined) {
+                  let coordinates: Coordinates = {
+                    x: k + 1,
+                    y: l + 1
+                  }
+                  chessPiece.insertMove(coordinates);
+                }
+              }
+              //for south-west direction
+              for (let k = i - 1, l = j + 1; j < this.chessBoardState.chessBoard.length && k >= 0; k--, l++) {
+                let piece = this.chessBoardState.chessBoard[k][l];
+                if (piece != undefined) {
+                  if (piece.color != chessPiece.color) {
+                    let coordinates: Coordinates = {
+                      x: piece.x,
+                      y: piece.y
+                    }
+                    chessPiece.insertMove(coordinates);
+                  }
+                  break;
+                }
+                else if (piece == undefined) {
+                  let coordinates: Coordinates = {
+                    x: k + 1,
+                    y: l + 1
+                  }
+                  chessPiece.insertMove(coordinates);
+                }
+              }
+            }
+            /* condition for bishop ends */
+
+            /* condition for queen starts */
+            else if (chessPiece.type === "queen") {
+              /* for queen we have to check all the directions north, south, east,west, north-east, north-west, south-east, south-west */
+
+              chessPiece.setEmptyMovementArray();
+              //for east condition
+              for (let k = i + 1; k < this.chessBoardState.chessBoard.length; k++) {
+                let piece = this.chessBoardState.chessBoard[k][j];
+                if (piece != undefined) {
+                  if (piece.color != chessPiece.color) {
+                    let coordinates: Coordinates = {
+                      x: piece.x,
+                      y: piece.y
+                    }
+                    chessPiece.insertMove(coordinates);
+                  }
+                  break;
+                }
+                else if (piece == undefined) {
+                  let coordinates: Coordinates = {
+                    x: k + 1,
+                    y: j + 1
+                  }
+                  chessPiece.insertMove(coordinates);
+                }
+              }
+              //for west condition
+              for (let k = i - 1; k >= 0; k--) {
+                let piece = this.chessBoardState.chessBoard[k][j];
+                if (piece != undefined) {
+                  if (piece.color != chessPiece.color) {
+                    let coordinates: Coordinates = {
+                      x: piece.x,
+                      y: piece.y
+                    }
+                    chessPiece.insertMove(coordinates);
+                  }
+                  break;
+                }
+                else if (piece == undefined) {
+                  let coordinates: Coordinates = {
+                    x: k + 1,
+                    y: j + 1
+                  }
+                  chessPiece.insertMove(coordinates);
+                }
+              }
+              //for north condtion
+              for (let k = j - 1; k >= 0; k--) {
+                let piece = this.chessBoardState.chessBoard[i][k];
+                if (piece != undefined) {
+                  if (piece.color != chessPiece.color) {
+                    let coordinates: Coordinates = {
+                      x: piece.x,
+                      y: piece.y
+                    }
+                    chessPiece.insertMove(coordinates);
+                  }
+                  break;
+                }
+                else if (piece == undefined) {
+                  let coordinates: Coordinates = {
+                    x: i + 1,
+                    y: k + 1
+                  }
+                  chessPiece.insertMove(coordinates);
+                }
+              }
+              //for south direction
+              for (let k = j + 1; k < this.chessBoardState.chessBoard.length; k++) {
+                let piece = this.chessBoardState.chessBoard[i][k];
+                if (piece != undefined) {
+                  if (piece.color != chessPiece.color) {
+                    let coordinates: Coordinates = {
+                      x: piece.x,
+                      y: piece.y
+                    }
+                    chessPiece.insertMove(coordinates);
+                  }
+                  break;
+                }
+                else if (piece == undefined) {
+                  let coordinates: Coordinates = {
+                    x: i + 1,
+                    y: k + 1
+                  }
+                  chessPiece.insertMove(coordinates);
+                }
+              }
+
+              //for south-east condition
+              for (let k = i + 1, l = j + 1; k < this.chessBoardState.chessBoard.length && l < this.chessBoardState.chessBoard.length; k++, l++) {
+                let piece = this.chessBoardState.chessBoard[k][l];
+                if (piece != undefined) {
+                  if (piece.color != chessPiece.color) {
+                    let coordinates: Coordinates = {
+                      x: piece.x,
+                      y: piece.y
+                    }
+                    chessPiece.insertMove(coordinates);
+                  }
+                  break;
+                }
+                else if (piece == undefined) {
+                  let coordinates: Coordinates = {
+                    x: k + 1,
+                    y: l + 1
+                  }
+                  chessPiece.insertMove(coordinates);
+                }
+              }
+              //for north-west condition
+              for (let k = i - 1, l = j - 1; k >= 0 && l >= 0; k--, l--) {
+                let piece = this.chessBoardState.chessBoard[k][l];
+                if (piece != undefined) {
+                  if (piece.color != chessPiece.color) {
+                    let coordinates: Coordinates = {
+                      x: piece.x,
+                      y: piece.y
+                    }
+                    chessPiece.insertMove(coordinates);
+                  }
+                  break;
+                }
+                else if (piece == undefined) {
+                  let coordinates: Coordinates = {
+                    x: k + 1,
+                    y: l + 1
+                  }
+                  chessPiece.insertMove(coordinates);
+                }
+              }
+              //for north-east condtion
+              for (let k = i + 1, l = j - 1; k < this.chessBoardState.chessBoard.length && l >= 0; k++, l--) {
+                let piece = this.chessBoardState.chessBoard[k][l];
+                if (piece != undefined) {
+                  if (piece.color != chessPiece.color) {
+                    let coordinates: Coordinates = {
+                      x: piece.x,
+                      y: piece.y
+                    }
+                    chessPiece.insertMove(coordinates);
+                  }
+                  break;
+                }
+                else if (piece == undefined) {
+                  let coordinates: Coordinates = {
+                    x: k + 1,
+                    y: l + 1
+                  }
+                  chessPiece.insertMove(coordinates);
+                }
+              }
+              //for south-west direction
+              for (let k = i - 1, l = j + 1; j < this.chessBoardState.chessBoard.length && k >= 0; k--, l++) {
+                let piece = this.chessBoardState.chessBoard[k][l];
+                if (piece != undefined) {
+                  if (piece.color != chessPiece.color) {
+                    let coordinates: Coordinates = {
+                      x: piece.x,
+                      y: piece.y
+                    }
+                    chessPiece.insertMove(coordinates);
+                  }
+                  break;
+                }
+                else if (piece == undefined) {
+                  let coordinates: Coordinates = {
+                    x: k + 1,
+                    y: l + 1
+                  }
+                  chessPiece.insertMove(coordinates);
+                }
+              }
+            }
+            /*condition for queen ends */
+
+            /* condition for king  starts */
+            else if (chessPiece.type === "king") {
+              /*for king we have to check all the directions east, west, north, south */
+
+              chessPiece.setEmptyMovementArray();
+              //for east condition
+              let k = i + 1;
+              if (k < this.chessBoardState.chessBoard.length) {
+                let piece = this.chessBoardState.chessBoard[k][j];
+                if (piece != undefined) {
+                  if (piece.color != chessPiece.color) {
+                    let coordinates: Coordinates = {
+                      x: piece.x,
+                      y: piece.y
+                    }
+                    chessPiece.insertMove(coordinates);
+                  }
+                }
+                else if (piece == undefined) {
+                  let coordinates: Coordinates = {
+                    x: k + 1,
+                    y: j + 1
+                  }
+                  chessPiece.insertMove(coordinates);
+                }
+              }
+              //for west condition
+              k = i - 1;
+              if (k >= 0) {
+                let piece = this.chessBoardState.chessBoard[k][j];
+                if (piece != undefined) {
+                  if (piece.color != chessPiece.color) {
+                    let coordinates: Coordinates = {
+                      x: piece.x,
+                      y: piece.y
+                    }
+                    chessPiece.insertMove(coordinates);
+                  }
+                }
+                else if (piece == undefined) {
+                  let coordinates: Coordinates = {
+                    x: k + 1,
+                    y: j + 1
+                  }
+                  chessPiece.insertMove(coordinates);
+                }
+              }
+
+              //for north condtion
+              k = j - 1;
+              if (k >= 0) {
+                let piece = this.chessBoardState.chessBoard[i][k];
+                if (piece != undefined) {
+                  if (piece.color != chessPiece.color) {
+                    let coordinates: Coordinates = {
+                      x: piece.x,
+                      y: piece.y
+                    }
+                    chessPiece.insertMove(coordinates);
+                  }
+                }
+                else if (piece == undefined) {
+                  let coordinates: Coordinates = {
+                    x: i + 1,
+                    y: k + 1
+                  }
+                  chessPiece.insertMove(coordinates);
+                }
+              }
+
+              //for south direction
+              k = j + 1;
+              if (k < this.chessBoardState.chessBoard.length) {
+                let piece = this.chessBoardState.chessBoard[i][k];
+                if (piece != undefined) {
+                  if (piece.color != chessPiece.color) {
+                    let coordinates: Coordinates = {
+                      x: piece.x,
+                      y: piece.y
+                    }
+                    chessPiece.insertMove(coordinates);
+                  }
+                }
+                else if (piece == undefined) {
+                  let coordinates: Coordinates = {
+                    x: i + 1,
+                    y: k + 1
+                  }
+                  chessPiece.insertMove(coordinates);
+                }
+              }
+            }
+            /* condition fr king ends */
           }
         }
       }
-    }
 
+    }
   }
 
 

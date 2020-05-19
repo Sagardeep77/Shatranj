@@ -20,7 +20,7 @@
 }
 
 .board {
-    position: absolute;
+    /* position: absolute; */
     top: 50%;
     left: 50%;
     width: 80vh;
@@ -31,13 +31,14 @@
 }
 
 .board-black {
-    transform: translate(-50%, -50%);
+    /* transform: translate(-50%, -50%); */
     box-shadow: -20px 20px 20px rgba(0, 0, 0, .5);
     border-radius: 5px;
 }
 
 .board-white {
-    transform: translate(-50%, -50%) rotate(180deg);
+    /* transform: translate(-50%, -50%) ; */
+    transform: rotate(180deg);
     box-shadow: 20px -20px 20px rgba(0, 0, 0, .5);
     border-radius: 5px;
 }

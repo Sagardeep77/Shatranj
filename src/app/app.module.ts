@@ -24,6 +24,7 @@ import {DragDropModule} from '@angular/cdk/drag-drop';
 import { MatCardModule } from  '@angular/material/card';
 import { ChessPieceComponent } from './chess-piece/chess-piece.component';
 import { ArenaService } from './services/arena.service';
+import { ChatAppComponent } from './chat-app/chat-app.component';
 
 
 @NgModule({
@@ -33,7 +34,8 @@ import { ArenaService } from './services/arena.service';
     HomePageComponent,
     ArenaComponent,
     ChessBoardComponent,
-    ChessPieceComponent
+    ChessPieceComponent,
+    ChatAppComponent
   ],
   imports: [
     BrowserModule,

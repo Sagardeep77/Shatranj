@@ -34,6 +34,7 @@ export class ChessBoardComponent implements OnInit {
       this.canAccessColor = "white";
     }
     console.log(this.playerNumber + "->" + this.canAccessColor)
+    this.arenaService.canAccessColor = this.canAccessColor;
     this.arenaService.setPlayer(this.playerNumber);
     this.arenaService.changeBoardState();
   }
@@ -66,11 +67,14 @@ export class ChessBoardComponent implements OnInit {
 
         let temp = this.arenaService.chessBoardState.chessBoard[x - 1][y - 1];
         this.arenaService.chessBoardState.chessBoard[x - 1][y - 1] = this.selectedChessPiece;
-        this.arenaService.chessBoardState.chessBoard[this.selectedChessPiece.prevX - 1][this.selectedChessPiece.prevY - 1] = temp;
-
+        
+        this.arenaService.chessBoardState.chessBoard[this.selectedChessPiece.prevX - 1][this.selectedChessPiece.prevY - 1] = undefined;
+        
         this.arenaService.erasePieceMoves(this.selectedChessPiece);
-        this.arenaService.changeBoardState();
         this.arenaService.isplayerTurn = false;
+        console.log("Black defeated -> ",this.arenaService.chessBoardState.getDefeatedPiecesBlack())
+        console.log("White defeated -> ",this.arenaService.chessBoardState.getDefeatedPiecesWhite())
+
       }
 
 
@@ -87,9 +91,15 @@ export class ChessBoardComponent implements OnInit {
     let temp = new ChessPiece(data.type, data.color, data.x, data.y);
     temp.prevX = data.prevX;
     temp.prevY = data.prevY;
-    this.arenaService.chessBoardState.chessBoard[data.x - 1][data.y - 1] = temp;;
+    
     console.log(temp);
+    if(this.arenaService.chessBoardState.chessBoard[data.x - 1][data.y - 1] != undefined){
+      this.arenaService.chessBoardState.insertDefeatedPiece(this.arenaService.chessBoardState.chessBoard[data.x - 1][data.y - 1]);
+    }
+    this.arenaService.chessBoardState.chessBoard[data.x - 1][data.y - 1] = temp;
+    this.arenaService.changeBoardState();
     this.arenaService.isplayerTurn = true;
+    
   }
 
 

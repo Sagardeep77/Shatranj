@@ -40,7 +40,10 @@ export class SocketService {
 
   onMessage(): Observable<String> {
     let observable = new Observable<String>(observer => {
-      this.socket.on('new-message', (data: String) => observer.next(data));
+      this.socket.on('new-message', (data: String) => {
+        observer.next(data);
+        console.log(data);
+      });
     });
     return observable;
   }

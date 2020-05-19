@@ -44,7 +44,7 @@ class P2PConnection {
 
         //events sharing for player 2
         this.socket2.on('new-message', (message) => {
-            this.socket2.broadcast.to(this.socket1.id).emit('drag-piece', message);
+            this.socket2.broadcast.to(this.socket1.id).emit('new-message', message);
             console.log("socket 2 :", message);
         });
 

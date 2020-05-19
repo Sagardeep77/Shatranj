@@ -28,82 +28,30 @@
 <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/malihu-custom-scrollbar-plugin/3.1.5/jquery.mCustomScrollbar.min.css">
 
 
+<div class="container">
+    <div class="arena-header row">
+        <div *ngIf="arenaStatus">
+            <span style="float: left;">
+                <h3>Player # {{playerNo}}</h3>
+            </span>
+            <span style="float: right;">
+                <h3>chatting</h3>
+            </span>
+        </div>
 
+    </div>
+    <div class="row">
+        <div class="col-sm-8">
+            <div *ngIf="arenaStatus else onePlayer" class="h-100">
 
-<div *ngIf="arenaStatus else onePlayer" class="container-fluid h-100">
-    <h3>Player # {{playerNo}}</h3>
-    <app-chess-board [playerNumber]="playerNo"></app-chess-board>
-</div>
-
-<ng-template #onePlayer>
-    <h3>{{status}}</h3>
-</ng-template>
-
-
-
-<!-- chat app -->
-
-<!-- <div class="row justify-content-center h-100">
-    <div class="col-md-8 col-xl-6 chat">
-        <div class="card">
-            <div class="card-header msg_head">
-                <div class="d-flex bd-highlight">
-                    <div class="img_cont">
-                        <img src="https://i.pinimg.com/originals/df/25/e3/df25e39d7400f1bbcb7adf695063faaa.jpg" class="rounded-circle user_img">
-                        <span class="online_icon"></span>
-                    </div>
-                    <div class="user_info">
-                        <span>Chat with Opponent</span>
-                        <p>{{messages.length}}</p>
-                    </div>
-                    <div class="video_cam">
-                        <span><i class="fas fa-video"></i></span>
-                        <span><i class="fas fa-phone"></i></span>
-                    </div>
-                </div>
-                <span id="action_menu_btn"><i class="fas fa-ellipsis-v"></i></span>
-                <div class="action_menu">
-                    <ul>
-                        <li><i class="fas fa-user-circle"></i> View profile</li>
-                        <li><i class="fas fa-users"></i> Add to close friends</li>
-                        <li><i class="fas fa-plus"></i> Add to group</li>
-                        <li><i class="fas fa-ban"></i> Block</li>
-                    </ul>
-                </div>
+                <app-chess-board [playerNumber]="playerNo"></app-chess-board>
             </div>
-            <div class="card-body msg_card_body">
-                <div *ngFor="let message of messages">
-                    <div *ngIf="message.sender == 'self'" class="d-flex justify-content-start mb-4">
-                        <div class="img_cont_msg">
-                            <img src="https://static.turbosquid.com/Preview/001292/481/WV/_D.jpg" class="rounded-circle user_img_msg">
-                        </div>
-                        <div class="msg_cotainer">
-                            {{message.text}}
-                        </div>
-                    </div>
-                    <div *ngIf="message.sender == 'opponent'" class="d-flex justify-content-end mb-4">
-                        <div class="msg_cotainer_send">
-                            {{message.text}}
-                        </div>
-                        <div class="img_cont_msg">
-                            <img src="https://i.pinimg.com/originals/df/25/e3/df25e39d7400f1bbcb7adf695063faaa.jpg" class="rounded-circle user_img_msg">
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="card-footer">
-                <form>
-                    <div class="input-group">
-                        <div class="input-group-append">
-                            <span class="input-group-text attach_btn"><i class="fas fa-paperclip"></i></span>
-                        </div>
-                        <textarea class="form-control" [(ngModel)]="sentMessage" name="sentMessage" class="form-control type_msg" placeholder="Type your message..."></textarea>
-                        <div class="input-group-append">
-                            <span class="input-group-text send_btn" type="submit" (click)="sendMessage()"> <i class="fas fa-location-arrow"></i></span>
-                        </div>
-                    </div>
-                </form>
-            </div>
+            <ng-template #onePlayer>
+                <h3>{{status}}</h3>
+            </ng-template>
+        </div>
+        <div class="col-sm-4">
+            <app-chat-app [connected]="arenaStatus"></app-chat-app>
         </div>
     </div>
-</div> -->
+</div>
