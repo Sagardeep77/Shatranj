@@ -62,5 +62,45 @@ export class ArenaComponent implements OnInit {
 
   
   
+selectedIndex = 0;
+transformStyle;
+// var carousel = document.querySelector('.carousel');
+// var cellCount = 3;
+angle;
+rotateCarousel() {
+  if(this.selectedIndex == 0){
+     this.angle = 0;
+  }
+  else if(this.selectedIndex == -1){
+    this.angle = 20;
+  }
+  else if(this.selectedIndex == 1){
+    this.angle = -20;
+  }
+  else{
+    return;
+  }
+  this.transformStyle = {
+    'transform' : 'translateZ(-288px) rotateY(' + this.angle + 'deg)'
+  };
+}
 
+previous(){
+    if(this.selectedIndex < 2 && this.selectedIndex > -1){
+      this.selectedIndex--;
+    }
+    this.rotateCarousel();
+  }
+
+
+ next(){
+  if(this.selectedIndex < 1 && this.selectedIndex > -2){
+    this.selectedIndex++;
+  }
+  this.rotateCarousel();
+};
+
+showButton(){
+  return this.transformStyle;
+}
 }

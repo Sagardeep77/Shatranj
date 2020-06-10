@@ -114,8 +114,8 @@ export class ChessPieceComponent implements OnInit {
           autoAlpha: 1,
           ease: Linear.easeNone,
           zIndex: 1,
-          scaleX: 1.5,
-          scaleY: 1.5,
+          scaleX: 1.2,
+          scaleY: 1.2,
         });
 
         this.arenaService.getPieceMoves(this.chessPiece);

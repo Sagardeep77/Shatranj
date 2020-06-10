@@ -10,28 +10,39 @@
     -webkit-user-drag: element;
 }
 
+
+/* styling a container of size 200px X 200px that will contain the object */
+
+
+/* activating the 3D space */
+
 .body-chess {
-    margin: 0;
     padding: 0;
-    background: #ddd;
-    height: 100vh;
+    height: 100%;
     /* it can be change */
     overflow: visible;
 }
 
 .board {
     /* position: absolute; */
+    /* transform: perspective(72vh); */
+    margin-top: -1vh;
     top: 50%;
     left: 50%;
-    width: 80vh;
-    height: 80vh;
-    transition: 0.5s;
-    background: black;
+    width: 72vh;
+    height: 72vh;
+    transition: transform 2s;
+    transform-style: preserve-3d;
+    /* transition: 0.5s; */
+    background: url(images/Red-Oak-Wood-Grain.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
     overflow: visible;
 }
 
 .board-black {
     /* transform: translate(-50%, -50%); */
+    /* transform: rotateX(25Deg); */
     box-shadow: -20px 20px 20px rgba(0, 0, 0, .5);
     border-radius: 5px;
 }
@@ -55,27 +66,35 @@
 }
 
 .row:nth-child(odd) span:nth-child(odd) {
-    width: 10vh;
-    height: 10vh;
-    background-color: white;
+    width: 9vh;
+    height: 9vh;
+    border: 1px solid #663300;
+    overflow: visible;
+    /* background-color: white; */
 }
 
 .row:nth-child(odd) span:nth-child(even) {
-    width: 10vh;
-    height: 10vh;
-    background-color: black;
+    width: 9vh;
+    height: 9vh;
+    border: 1px solid #663300;
+    overflow: visible;
+    /* background-color: black; */
 }
 
 .row:nth-child(even) span:nth-child(odd) {
-    width: 10vh;
-    height: 10vh;
-    background-color: black;
+    width: 9vh;
+    height: 9vh;
+    border: 1px solid #663300;
+    overflow: visible;
+    /* background-color: black; */
 }
 
 .row:nth-child(even) span:nth-child(even) {
-    width: 10vh;
-    height: 10vh;
-    background-color: white;
+    width: 9vh;
+    height: 9vh;
+    border: 1px solid #663300;
+    overflow: visible;
+    /* background-color: white; */
 }
 
 
@@ -94,3 +113,130 @@
 .row:nth-child(even) span:nth-child(even):hover {
     background-color: red;
 } */
+
+
+/* CSS for the 3d board */
+
+.scene {
+    width: 72vh;
+    height: 72vh;
+    width: 100%;
+    text-align: center;
+    perspective: 1000px;
+}
+
+.box {
+    width: 72vh;
+    height: 72vh;
+    position: relative;
+    transform-style: preserve-3d;
+    transform: rotateX(30deg) translateZ(-10px);
+    transition: transform 1s;
+    display: inline-block;
+}
+
+.box.show-front {
+    transform: translateZ( -50px) rotate3d(1, 0, 0, 90deg);
+}
+
+.box.show-back {
+    transform: translateZ( -50px) rotateY(-180deg);
+}
+
+.box.show-right {
+    transform: translateZ(-150px) rotateY( -90deg);
+}
+
+.box.show-left {
+    transform: translateZ(-150px) rotateY( 90deg);
+}
+
+.box.show-top {
+    transform: translateZ(-100px) rotateX( -90deg);
+}
+
+.box.show-bottom {
+    transform: translateZ(-100px) rotateX( 90deg);
+}
+
+.box__face {
+    position: absolute;
+    font-size: xs;
+    font-weight: bold;
+    color: white;
+    text-align: center;
+}
+
+.box__face--front,
+.box__face--back {
+    width: 72vh;
+    height: 72vh;
+}
+
+.box__face--right,
+.box__face--left {
+    width: 20px;
+    height: 72vh;
+    left: 0px;
+}
+
+.box__face--top,
+.box__face--bottom {
+    width: 72vh;
+    height: 20px;
+}
+
+
+/* .box__face--front {
+    background: hsla( 0, 100%, 50%, 0.7);
+}
+
+.box__face--right {
+    background: hsla( 60, 100%, 50%, 0.7);
+}
+
+.box__face--back {
+    background: hsla(120, 100%, 50%, 0.7);
+}
+
+.box__face--left {
+    background: hsla(180, 100%, 50%, 0.7);
+}
+
+.box__face--top {
+    background: hsla(240, 100%, 50%, 0.7);
+}
+*/
+
+.box__face--bottom {
+    background-color: #663300;
+}
+
+.box__face--front {
+    transform: rotateY( 0deg) translateZ( 10px);
+}
+
+.box__face--back {
+    transform: rotateY(180deg) translateZ( 10px);
+}
+
+.box__face--right {
+    transform: rotateY( 90deg) translateZ(70vh);
+}
+
+.box__face--left {
+    transform: rotateY(-90deg) translateZ(10px);
+}
+
+.box__face--top {
+    transform: rotateX( 90deg) translateZ(10px);
+}
+
+.box__face--bottom {
+    transform: rotateX(-90deg) translateZ(70vh);
+}
+
+label {
+    margin-right: 10px;
+    margin-top: 200px;
+}

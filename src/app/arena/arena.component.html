@@ -1,57 +1,62 @@
-<!-- <div class="container-fluid" *ngIf="activePlayers">
-    <div class="row">
-        <mat-card>
-            <form>
-                <input type="text" class="form-control" [(ngModel)]="sentMessage" name="sentMessage">
-                <button type="submit" (click)="sendMessage()">send</button>
-            </form>
-        </mat-card>
-    </div>
-
-    <div class="row">
-        <div class="col-xs-6">
-            <mat-card  *ngFor="let message of sentMessages">{{message}}</mat-card>
-        </div>
-        <div class="col-xs-6">
-            <mat-card *ngFor="let message of recievedMessages">{{message}}</mat-card>
-        </div>
-    </div>
-</div>
-
-
-
-<p>Player {{activePlayers | json}} joined</p> -->
-
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
 
 <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/malihu-custom-scrollbar-plugin/3.1.5/jquery.mCustomScrollbar.min.css">
 
 
-<div class="container">
-    <div class="arena-header row">
-        <div *ngIf="arenaStatus">
+<div class="container-fluid">
+    <div class="top-screen row">
+        <app-top-screen></app-top-screen>
+        <!-- <div *ngIf="arenaStatus">
             <span style="float: left;">
                 <h3>Player # {{playerNo}}</h3>
             </span>
             <span style="float: right;">
                 <h3>chatting</h3>
             </span>
-        </div>
+        </div> -->
 
     </div>
     <div class="row">
-        <div class="col-sm-8">
-            <div *ngIf="arenaStatus else onePlayer" class="h-100">
+        <div class="col-md-2 col-sm-2 left-screen">
+            left-screen
+        </div>
+        <div class="col-md-7 col-sm-7 chess-screen">
 
+            <div class="row active-screen text-center" style="width: 100%; margin: 0 0 0 0;">
+                <div class="col-md-5 col-sm-5 col-5 turn-screen">Your turn</div>
+                <div class="col-md-2 col-sm-2 col-2 timer-screen">
+                    <div class="timer-screen-div">
+                        <div class="diagonal-outline-left"></div>
+                        <div class="horizontal-outline">
+
+                        </div>
+                        <div class="diagonal-outline-right "></div>
+                    </div>
+                </div>
+                <div class="col-md-5 col-sm-5 col-5 player-color-screen ">Black</div>
+
+            </div>
+
+            <!-- <div class="row" style="width: 100%; margin: 0 0 0 0;">asdas</div> -->
+            <div *ngIf="arenaStatus else onePlayer" class="">
                 <app-chess-board [playerNumber]="playerNo"></app-chess-board>
             </div>
             <ng-template #onePlayer>
                 <h3>{{status}}</h3>
             </ng-template>
+
+            <!--chess screen footer-->
+
         </div>
-        <div class="col-sm-4">
-            <app-chat-app [connected]="arenaStatus"></app-chat-app>
+        <div class="col-md-3 col-sm-3 right-screen">
+            <div class="active-screen" style="width: 100%; margin: 0 0 0 0;">
+                <span>Chat</span><span>Tab 2</span>
+            </div>
+            <div class="show-content">
+                <app-chat-app [connected]="arenaStatus"></app-chat-app>
+            </div>
         </div>
     </div>
 </div>

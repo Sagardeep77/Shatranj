@@ -7,7 +7,8 @@
     background-repeat: no-repeat;
     width: 100%;
     height: 100%;
-    background-color: gray;
+    filter: invert(100%);
+    /* background-color: gray; */
 }
 
 .piece-black-queen {
@@ -17,7 +18,8 @@
     background-repeat: no-repeat;
     width: 100%;
     height: 100%;
-    background-color: gray;
+    filter: invert(100%);
+    /* background-color: gray; */
 }
 
 .piece-black-bishop {
@@ -27,7 +29,8 @@
     background-repeat: no-repeat;
     width: 100%;
     height: 100%;
-    background-color: gray;
+    filter: invert(100%);
+    /* background-color: gray; */
 }
 
 .piece-black-knight {
@@ -37,7 +40,8 @@
     background-repeat: no-repeat;
     width: 100%;
     height: 100%;
-    background-color: gray;
+    filter: invert(100%);
+    /* background-color: gray; */
 }
 
 .piece-black-rook {
@@ -47,7 +51,8 @@
     background-repeat: no-repeat;
     width: 100%;
     height: 100%;
-    background-color: gray;
+    filter: invert(100%);
+    /* background-color: gray; */
 }
 
 .piece-black-pawn {
@@ -57,7 +62,8 @@
     background-repeat: no-repeat;
     width: 100%;
     height: 100%;
-    background-color: gray;
+    filter: invert(100%);
+    /* background-color: gray; */
 }
 
 
@@ -70,7 +76,7 @@
     background-repeat: no-repeat;
     width: 100%;
     height: 100%;
-    background-color: mediumslateblue;
+    /* background-color: mediumslateblue; */
 }
 
 .piece-white-queen {
@@ -80,7 +86,7 @@
     background-repeat: no-repeat;
     width: 100%;
     height: 100%;
-    background-color: mediumslateblue;
+    /* background-color: mediumslateblue; */
 }
 
 .piece-white-bishop {
@@ -90,7 +96,7 @@
     background-repeat: no-repeat;
     width: 100%;
     height: 100%;
-    background-color: mediumslateblue;
+    /* background-color: mediumslateblue; */
 }
 
 .piece-white-knight {
@@ -100,7 +106,7 @@
     background-repeat: no-repeat;
     width: 100%;
     height: 100%;
-    background-color: mediumslateblue;
+    /* background-color: mediumslateblue; */
 }
 
 .piece-white-rook {
@@ -110,7 +116,7 @@
     background-repeat: no-repeat;
     width: 100%;
     height: 100%;
-    background-color: mediumslateblue;
+    /* background-color: mediumslateblue; */
 }
 
 .piece-white-pawn {
@@ -120,13 +126,14 @@
     background-repeat: no-repeat;
     width: 100%;
     height: 100%;
-    background-color: mediumslateblue;
+    /* background-color: mediumslateblue; */
 }
 
 .chess-piece-rotate {
     transform: rotate(180deg);
+    /* box-shadow: -10px 10px 10px rgba(59, 59, 59, 0.5); */
 }
 
 .chess-place-available {
-    border: 3px solid brown;
+    border: 3px solid saddlebrown;
 }

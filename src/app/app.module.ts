@@ -25,6 +25,7 @@ import { MatCardModule } from  '@angular/material/card';
 import { ChessPieceComponent } from './chess-piece/chess-piece.component';
 import { ArenaService } from './services/arena.service';
 import { ChatAppComponent } from './chat-app/chat-app.component';
+import { TopScreenComponent } from './top-screen/top-screen.component';
 
 
 @NgModule({
@@ -35,7 +36,8 @@ import { ChatAppComponent } from './chat-app/chat-app.component';
     ArenaComponent,
     ChessBoardComponent,
     ChessPieceComponent,
-    ChatAppComponent
+    ChatAppComponent,
+    TopScreenComponent,
   ],
   imports: [
     BrowserModule,

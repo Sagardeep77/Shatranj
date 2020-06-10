@@ -1,10 +1,14 @@
 .chat {
+    height: 100%;
     margin-top: auto;
     margin-bottom: auto;
+    padding: 0 0 0 0;
 }
 
 .card {
-    height: 80vh;
+    margin-top: 0;
+    height: 100%;
+    width: 100%;
     border-radius: 15px !important;
     background-color: rgba(0, 0, 0, 0.4) !important;
 }
@@ -25,6 +29,7 @@
 }
 
 .card-footer {
+    font-size: 4vw;
     border-radius: 0 0 15px 15px !important;
     border-top: 0 !important;
 }
@@ -47,10 +52,10 @@
 }
 
 .type_msg {
+    /* padding-top: 2vh; */
     background-color: rgba(0, 0, 0, 0.3) !important;
     border: 0 !important;
     color: white !important;
-    height: 60px !important;
     overflow-y: auto;
 }
 
@@ -68,6 +73,7 @@
 }
 
 .send_btn {
+    padding-top: 2vh;
     border-radius: 0 15px 15px 0 !important;
     background-color: rgba(0, 0, 0, 0.3) !important;
     border: 0 !important;
@@ -99,37 +105,27 @@
 }
 
 .user_img {
-    height: 70px;
-    width: 70px;
+    height: 4vw;
+    width: 4vw;
     border: 1.5px solid #f5f6fa;
 }
 
 .user_img_msg {
-    height: 40px;
-    width: 40px;
+    height: 2vw;
+    width: 2vw;
     border: 1.5px solid #f5f6fa;
 }
 
 .img_cont {
     position: relative;
-    height: 70px;
-    width: 70px;
+    margin-top: auto;
+    margin-bottom: auto;
 }
 
 .img_cont_msg {
-    height: 40px;
-    width: 40px;
-}
-
-.online_icon {
-    position: absolute;
-    height: 15px;
-    width: 15px;
-    background-color: #4cd137;
-    border-radius: 50%;
-    bottom: 0.2em;
-    right: 0.4em;
-    border: 1.5px solid white;
+    margin-top: 1vh;
+    height: 2vw;
+    width: 2vw;
 }
 
 .offline {
@@ -138,17 +134,23 @@
 
 .user_info {
     margin-top: auto;
+    margin-left: 1.5vw;
     margin-bottom: auto;
-    margin-left: 15px;
+    width: 100%;
+    background-color: rgba(0, 0, 0, 0.897);
+    border-radius: 10px;
+    /* margin-left: 5%; */
 }
 
-.user_info span {
-    font-size: 20px;
-    color: white;
+.user_info div {
+    padding-top: 1vh;
+    font-size: 1.3vw;
+    color: gray;
 }
 
 .user_info p {
-    font-size: 10px;
+    margin-top: 1vh;
+    font-size: 0.8vw;
     color: rgba(255, 255, 255, 0.6);
 }
 
@@ -164,23 +166,25 @@
     margin-right: 20px;
 }
 
+.msg-box {
+    height: 8vh;
+}
+
 .msg_container {
-    margin-top: auto;
+    margin-top: 2vh;
     margin-bottom: auto;
     margin-left: 10px;
-    border-radius: 25px;
-    background-color: #82ccdd;
-    padding: 10px;
+    border-radius: 10px;
+    background-color: rgba(0, 0, 0, 0.897);
     position: relative;
 }
 
 .msg_container_send {
-    margin-top: auto;
+    margin-top: 2vh;
     margin-bottom: auto;
     margin-right: 10px;
-    border-radius: 25px;
-    background-color: #78e08f;
-    padding: 10px;
+    border-radius: 10px;
+    background-color: rgba(0, 0, 0, 0.897);
     position: relative;
 }
 
@@ -204,50 +208,9 @@
     position: relative;
 }
 
-#action_menu_btn {
-    position: absolute;
-    right: 10px;
-    top: 10px;
-    color: white;
-    cursor: pointer;
-    font-size: 20px;
-}
 
-.action_menu {
-    z-index: 1;
-    position: absolute;
-    padding: 15px 0;
-    background-color: rgba(0, 0, 0, 0.5);
-    color: white;
-    border-radius: 15px;
-    top: 30px;
-    right: 15px;
-    display: none;
-}
-
-.action_menu ul {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-}
-
-.action_menu ul li {
-    width: 100%;
-    padding: 10px 15px;
-    margin-bottom: 5px;
-}
-
-.action_menu ul li i {
-    padding-right: 10px;
-}
-
-.action_menu ul li:hover {
-    cursor: pointer;
-    background-color: rgba(0, 0, 0, 0.2);
-}
-
-@media(max-width: 576px) {
+/* @media(max-width: 100%) {
     .contacts_card {
         margin-bottom: 15px !important;
     }
-}
+} */
