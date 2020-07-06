@@ -1,7 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef,  ViewChildren, } from '@angular/core';
 import { DataCommunicationService } from '../services/data-communication.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { SocketService } from '../services/socket.service';
+import { GsapAnimationService } from '../gsap-animation.service';
+
 
 @Component({
   selector: 'app-home-page',
@@ -13,14 +15,28 @@ export class HomePageComponent implements OnInit {
   linkSuccess: boolean;
   generatedLink: string;
   code: number;
+  isCardSelected:boolean = false;
+  selectedCard: string;
+
   constructor(private activatedRoute: ActivatedRoute,
     private router: Router,
     private socketService:SocketService,
-    private dataCommService:DataCommunicationService
-  ) { }
+    private dataCommService:DataCommunicationService,
+    private gsapAnimation : GsapAnimationService,
+  ) { 
+  }
 
   ngOnInit() {
     this.linkSuccess = true;
+    
+  }
+
+  ngAfterViewInit(){
+    
+  }
+
+  ngOnChanges(){
+    
   }
 
   generateLink() {
@@ -33,4 +49,17 @@ export class HomePageComponent implements OnInit {
     // console.log(this.activatedRoute);
   }
 
+  selectCard(selectedCard){
+    this.isCardSelected = true;
+    this.selectedCard = selectedCard; 
+    
+    
+  }
+
+  copyLink(event) {
+    /* Get the text field */
+    var copyText = document.getElementsByName("inputLink")[0] as HTMLInputElement;
+    copyText.select();
+    document.execCommand("copy");
+  }
 }

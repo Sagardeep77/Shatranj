@@ -3,6 +3,7 @@ import { ChessPiece } from '../models/gameState.model';
 import { TweenMax, Linear } from 'gsap';
 import { EventEmitter } from '@angular/core';
 import { ArenaService } from '../services/arena.service';
+import { GsapAnimationService } from '../gsap-animation.service';
 export interface Coordinates {
   x: number;
   y: number;
@@ -29,7 +30,7 @@ export class ChessPieceComponent implements OnInit {
   subscription;
 
 
-  constructor(private arenaService: ArenaService) {
+  constructor(private arenaService: ArenaService,private gsapAnimationService:GsapAnimationService) {
 
   }
 
@@ -38,6 +39,10 @@ export class ChessPieceComponent implements OnInit {
       this.isChessPiece = true;
       this.prevChessPiece = this.chessPiece;
       this.setChessPieceClass(this.chessPiece);
+      let c = document.getElementsByClassName("chess-board-piece");
+      if(c.length === 64){
+        this.gsapAnimationService.chessBoardAnimation(c);
+      }
     }
   }
 

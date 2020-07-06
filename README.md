@@ -124,3 +124,10 @@ To get more help on the Angular CLI use `ng help` or go check out the [Angular C
     Usage:  git pull [Repository Link]  
 
     This command fetches and merges changes on the remote server to your working directory.  
+
+
+# Used Libraries
+1. GSAP Animaiton.
+2. Animate.css.
+3. Angular material.
+4. Angular animation.

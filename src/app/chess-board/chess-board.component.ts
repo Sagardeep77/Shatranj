@@ -1,8 +1,9 @@
-import { Component, OnInit, ElementRef, ViewChild, Input } from '@angular/core';
+import { Component, OnInit, ElementRef, ViewChild, Input, OnChanges } from '@angular/core';
 import { ChessBoardState, ChessPiece } from '../models/gameState.model';
 import { ArenaService } from '../services/arena.service';
 import { SocketService } from '../services/socket.service';
 import { element } from 'protractor';
+import { GsapAnimationService } from '../gsap-animation.service';
 
 
 
@@ -14,12 +15,14 @@ import { element } from 'protractor';
   templateUrl: './chess-board.component.html',
   styleUrls: ['./chess-board.component.css']
 })
-export class ChessBoardComponent implements OnInit {
+export class ChessBoardComponent implements OnInit,OnChanges {
   @Input() playerNumber: number;
+  @Input() isClassic : boolean;
+  @Input() isDimension3D: boolean;
   canAccessColor: string;
   draggedColumn;
   selectedChessPiece;
-  constructor(private arenaService: ArenaService, private socketService: SocketService) { }
+  constructor(private arenaService: ArenaService, private socketService: SocketService, private gsapAnimationService:GsapAnimationService) { }
 
   ngOnInit() {
     this.socketService.getOpponentTurn().subscribe((data: ChessPiece) => {
@@ -39,6 +42,13 @@ export class ChessBoardComponent implements OnInit {
     this.arenaService.changeBoardState();
   }
 
+  ngOnChanges(){
+    // this.chessBoardAnimation();
+  }
+  ngAfterViewInit(){
+    
+  }
+  
   handleDragOver(event) {
     // this / event.target is current target element.
     // console.log(event);

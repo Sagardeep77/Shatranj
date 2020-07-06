@@ -1,11 +1,11 @@
 <div class="scene">
-    <div class="box">
+    <div class="box" [ngStyle]="{'transform':this.isDimension3D ? 'rotateX(30deg) translateZ(-10px)' : 'rotateX(0deg) translateZ(-10px)' }">
         <div class="box__face box__face--front show-front">
             <div id="chessBoardBody" class="body-chess">
                 <div class="board container-fluid" [ngClass]="{'board-black':playerNumber===1, 'board-white':playerNumber===2}" #board>
-                    <div class="row" *ngFor="let row of arenaService.chessBoardState.chessBoard; index as
+                    <div class="row" [ngClass]="isClassic ? 'row-classic' : 'row-wooden'" *ngFor="let row of arenaService.chessBoardState.chessBoard; index as
                 i">
-                        <span *ngFor="let piece of row; index as j" (drop)="handleDrop($event,i+1,j+1)" (dragover)="handleDragOver($event)">
+                        <span *ngFor="let piece of row; index as j" class="chess-board-piece" (drop)="handleDrop($event,i+1,j+1)" (dragover)="handleDragOver($event)">
                             <app-chess-piece class="chess-piece" [canAccessColor]="canAccessColor" [chessPiece]="piece"
                                 [x]="i+1" [y]="j+1" (dragDropEvent)="sendDataEvent($event)"
                                 [isAvailablePlace]="checkAvailablePlace(i,j)"></app-chess-piece>

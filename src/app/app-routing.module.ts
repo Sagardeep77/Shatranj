@@ -8,7 +8,7 @@ import { LandingPageComponent } from './landing-page/landing-page.component';
 
 const routes:Routes = [
   {path :'arena/:code', component:ArenaComponent},
-  {path : '' , component : LandingPageComponent},
+  {path : '' , component : HomePageComponent},
   {path : 'home' , component : HomePageComponent}
  ];
 

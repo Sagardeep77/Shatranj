@@ -3,17 +3,120 @@
 <button type="button" class="btn btn-success" (click)="generateLink()">Generate</button>
 <input type="text" [disabled]="linkSuccess" value="" name="inputLink" [(ngModel)]="generatedLink">
 <button type="button" *ngIf="!linkSuccess" class="btn btn-primary" (click)="navigateToArena()">Arena</button> -->
+<!-- 
+<div class="container-fluid">
+    <div class="home-page-wrapper">
+        <div class="row cards-wrapper" *ngIf="!isCardSelected">
+            <div id="cardBot" appSelectiondCard class="col-sm-4 col-4 col-md-4 selection-card">
+                <mat-card>
+                    <mat-card-content class="card">
+                        <p>Play with Bot</p>
+                    </mat-card-content>
+                </mat-card>
+            </div>
+            <div id="cardRandom" appSelectiondCard class="col-sm-4 col-4 col-md-4 selection-card">
+                <mat-card>
+                    <mat-card-content class="card">
+                        <p>Play with Random</p>
+                    </mat-card-content>
+                </mat-card>
+            </div>
+            <div id="cardFriend" appSelectiondCard class="col-sm-4 col-4 col-md-4 selection-card">
+                <mat-card>
+                    <mat-card-content class="card" (click)="selectCard('Friend')">
+                        <p>Play with Friend</p>
+                    </mat-card-content>
+                </mat-card>
+            </div>
+        </div>
 
-<div class="home-page-wrapper">
-    <div class="card-wrapper">
-        <mat-card>
-            <mat-card-content class="card">
-                <button type="button" class="btn btn-success" (click)="generateLink()">Generate</button>
-                <input type="text" class="mat-form-control" [disabled]="linkSuccess" value="" name="inputLink" [(ngModel)]="generatedLink">
-                
-                <button type="button" *ngIf="!linkSuccess" class="btn btn-primary"
-                    (click)="navigateToArena()">Arena</button>
-            </mat-card-content>
-        </mat-card>
+        <button *ngIf="isCardSelected" class="btn btn-light" (click)="isCardSelected = false;selectedCard=null">Back</button>
+
+        <div *ngIf="selectedCard==='Friend'" class="row cards-wrapper">
+
+            <div id="cardFriend" appSelectiondCard class="col-sm-6 col-6 col-md-6 selection-card">
+                <mat-card>
+                    <mat-card-content class="card ">
+                        <button type="button" class="btn btn-success" (click)="generateLink()">Generate</button>
+                        <input type="text" class="mat-form-control" [disabled]="linkSuccess" value="" name="inputLink" [(ngModel)]="generatedLink">
+
+                        <button type="button" *ngIf="!linkSuccess" class="btn btn-primary" (click)="navigateToArena()">Arena</button>
+                        <br><button *ngIf="!linkSuccess" class="btn btn-light" (click)="copyLink($event)">Copy to clipboard</button>
+                    </mat-card-content>
+                </mat-card>
+            </div>
+        </div>
     </div>
+</div> -->
+
+<!-- <div class="background-image"></div> -->
+<div class="main container-fluid">
+    <div class="row">
+        <nav class="navbar navbar-default">
+            <a href="" class="nav__link">Virtual Tour</a>
+            <a href="" class="nav__link nav__link-middle">Learn</a>
+            <a href="" class="nav__link">Contact</a>
+
+        </nav>
+
+    </div>
+    <div class="row justify-content-start">
+        <div class="card-lg__container col-sm-6 col-md-6">
+            <p class="card__text-sm">India</p>
+            <h1 class="card__text-lg">SATRANJ</h1>
+            <p class="card__text-md">Play chess with us.</p>
+            <a href="#" class="card__btn">Discover</a>
+        </div>
+    </div>
+
+    <div class="row justify-content-end">
+        <div class="col-md-4">a</div>
+        <div class="card-sm__container col-md-8">
+
+            <div class="row cards-wrapper text-center" *ngIf="!isCardSelected">
+                <div id="cardBot" appSelectiondCard class="col-sm-4 col-md-4 ">
+                    <mat-card class="card-sm">
+                        <mat-card-content class="card">
+                            <p>Play with Bot</p>
+                        </mat-card-content>
+                    </mat-card>
+                </div>
+                <div id="cardRandom" appSelectiondCard class="col-sm-4 col-md-4">
+                    <mat-card class="card-sm">
+                        <mat-card-content class="card">
+                            <p>Play with Random</p>
+                        </mat-card-content>
+                    </mat-card>
+                </div>
+                <div id="cardFriend" appSelectiondCard class="col-sm-4 col-md-4" (click)="selectCard('Friend')">
+                    <mat-card class="card-sm">
+                        <mat-card-content class="card ">
+                            <p>Play with Friend</p>
+                        </mat-card-content>
+                    </mat-card>
+                </div>
+            </div>
+
+            <!-- <button *ngIf="isCardSelected" class="btn btn-light" (click)="isCardSelected = false;selectedCard=null">Back</button> -->
+
+            <div *ngIf="selectedCard==='Friend'" class="row cards-wrapper">
+
+                <div id="cardFriend" appSelectiondCard class="col-sm-12 col-12 col-md-12">
+                    <mat-card class="card-sm">
+                        <mat-card-content class="card">
+                            <button type="button" class="btn btn-success" (click)="generateLink()">Generate</button>
+                            <input type="text" class="mat-form-control" [disabled]="linkSuccess" value="" name="inputLink" [(ngModel)]="generatedLink">
+
+                            <button type="button" *ngIf="!linkSuccess" class="btn btn-primary" (click)="navigateToArena()">Arena</button>
+                            <br><button *ngIf="!linkSuccess" class="btn btn-light" (click)="copyLink($event)">Copy to clipboard</button>
+                        </mat-card-content>
+                    </mat-card>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+
+
 </div>

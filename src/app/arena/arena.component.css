@@ -1,10 +1,11 @@
+@import url(https://fonts.googleapis.com/css?family=Lato:300,400,700);
 body,
 html {
     height: 100%;
     margin: 0;
     width: 100%;
     padding: 0;
-    background: #7F7FD5;
+    /* background: #7F7FD5; */
     background: -webkit-linear-gradient(to right, #91EAE4, #86A8E7, #7F7FD5);
     background: linear-gradient(to right, #91EAE4, #86A8E7, #7F7FD5);
 }
@@ -17,7 +18,8 @@ html {
 .container-fluid {
     width: 100vw;
     height: 100vh;
-    background-color: rgba(0, 0, 0, 0.897);
+    background-color: #222;
+    overflow: hidden;
 }
 
 .top-screen {
@@ -32,7 +34,7 @@ html {
 }
 
 .chess-screen {
-    max-height: 80vh;
+    height: 80vh;
     padding: 0 0 0 0;
     /* border: 1px solid salmon; */
     border-bottom: 1px solid gray;
@@ -84,8 +86,10 @@ html {
 }
 
 .horizontal-outline {
+    border-left: 1px solid gray;
+    border-right: 1px solid gray;
     border-bottom: 1px solid gray;
-    width: 60%;
+    width: 100%;
     height: 100%;
     margin: 0 0 0 0;
     display: inline-block;
@@ -98,6 +102,37 @@ html {
     display: inline-block;
     background: linear-gradient(to top left, rgba(128, 128, 128, 0) 0%, rgba(128, 128, 128, 0) calc(50% - 0.8px), rgba(128, 128, 128, 1) 50%, rgba(128, 128, 128, 0) calc(50% + 0.8px), rgba(128, 128, 128, 0) 100%);
 }
+
+
+/* timer css */
+
+@import url(https://fonts.googleapis.com/css?family=Covered+By+Your+Grace);
+#timer {
+    text-align: center;
+    font-family: 'Covered By Your Grace', cursive;
+    color: white;
+}
+
+#minutes {
+    color: #f6da74;
+}
+
+#seconds {
+    color: #abcd58;
+}
+
+
+/* div {
+    display: inline-block;
+}
+
+span {
+    display: block;
+    color: white;
+} */
+
+
+/* timer css ends */
 
 .player-color-screen {
     margin: 0 0 0 0;
@@ -126,4 +161,125 @@ html {
 
 /*
     Chess-screen-footer start
+
 */
+
+@import url(https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css);
+@import url(https://fonts.googleapis.com/css?family=Lato:300,400,700);
+body {
+    font-family: 'Lato', sans-serif;
+    background: #353535;
+    color: #FFF;
+}
+
+.jumbotron h1 {
+    color: #353535;
+}
+
+footer {
+    margin-bottom: 0 !important;
+    margin-top: 80px;
+}
+
+footer p {
+    margin: 0;
+    padding: 0;
+}
+
+span.icon {
+    margin: 0 5px;
+    color: #D64541;
+}
+
+h2 {
+    color: #BDC3C7;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.mrng-60-top {
+    margin-top: 60px;
+}
+
+
+/*footer */
+
+
+/* Global Button Styles */
+
+a.animated-button.thar-two {
+    color: #fff;
+    cursor: pointer;
+    display: block;
+    position: relative;
+    margin-left: 1vw;
+    margin-right: 1vw;
+    margin-top: 2.5vh;
+    border: 1px solid saddlebrown;
+    font-family: 'Amatic SC', cursive;
+    transition: all 0.4s cubic-bezier(0.215, 0.61, 0.355, 1) 0s;
+}
+
+a.animated-button.thar-two:hover {
+    color: white !important;
+    background-color: transparent;
+    text-shadow: ntwo;
+}
+
+a.animated-button.thar-two:hover:before {
+    height: 100%;
+}
+
+a.animated-button.thar-two:before {
+    display: block;
+    position: absolute;
+    left: 0px;
+    bottom: 0px;
+    height: 0px;
+    width: 100%;
+    z-index: -1;
+    content: '';
+    color: #000 !important;
+    background: saddlebrown;
+    transition: all 0.4s cubic-bezier(0.215, 0.61, 0.355, 1) 0s;
+}
+
+div.btn-chess-color>a.active {
+    color: white !important;
+    background-color: transparent;
+    text-shadow: ntwo;
+}
+
+div.btn-chess-color>a.active::before {
+    height: 100%;
+}
+
+.btn-chess-color {
+    display: inline-block;
+}
+
+.btn-dimension {
+    display: inline-block;
+    height: 100%;
+    color: gray;
+}
+
+a.btn-dim {
+    margin-right: 0%;
+    outline: 0;
+    border: none;
+    transition: all .3s ease-out;
+    border: 1px solid saddlebrown;
+}
+
+div.btn-dimension>a.active {
+    margin-top: -1vh;
+    color: #444;
+    box-shadow: -5px 5px 5px 5px rgba(0, 0, 0, .5);
+    background-color: greenyellow;
+}
+
+
+/* .btn-dimension>a :hover::before {
+    color: #444;
+} */

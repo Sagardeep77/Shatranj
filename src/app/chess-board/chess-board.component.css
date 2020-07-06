@@ -65,7 +65,39 @@
     overflow: visible;
 }
 
-.row:nth-child(odd) span:nth-child(odd) {
+.row-classic:nth-child(odd) span:nth-child(odd) {
+    width: 9vh;
+    height: 9vh;
+    border: 1px solid #663300;
+    overflow: visible;
+    background-color: white;
+}
+
+.row-classic:nth-child(odd) span:nth-child(even) {
+    width: 9vh;
+    height: 9vh;
+    border: 1px solid #663300;
+    overflow: visible;
+    background-color: black;
+}
+
+.row-classic:nth-child(even) span:nth-child(odd) {
+    width: 9vh;
+    height: 9vh;
+    border: 1px solid #663300;
+    overflow: visible;
+    background-color: black;
+}
+
+.row-classic:nth-child(even) span:nth-child(even) {
+    width: 9vh;
+    height: 9vh;
+    border: 1px solid #663300;
+    overflow: visible;
+    background-color: white;
+}
+
+.row-wooden:nth-child(odd) span:nth-child(odd) {
     width: 9vh;
     height: 9vh;
     border: 1px solid #663300;
@@ -73,7 +105,7 @@
     /* background-color: white; */
 }
 
-.row:nth-child(odd) span:nth-child(even) {
+.row-wooden:nth-child(odd) span:nth-child(even) {
     width: 9vh;
     height: 9vh;
     border: 1px solid #663300;
@@ -81,7 +113,7 @@
     /* background-color: black; */
 }
 
-.row:nth-child(even) span:nth-child(odd) {
+.row-wooden:nth-child(even) span:nth-child(odd) {
     width: 9vh;
     height: 9vh;
     border: 1px solid #663300;
@@ -89,7 +121,7 @@
     /* background-color: black; */
 }
 
-.row:nth-child(even) span:nth-child(even) {
+.row-wooden:nth-child(even) span:nth-child(even) {
     width: 9vh;
     height: 9vh;
     border: 1px solid #663300;
@@ -130,7 +162,6 @@
     height: 72vh;
     position: relative;
     transform-style: preserve-3d;
-    transform: rotateX(30deg) translateZ(-10px);
     transition: transform 1s;
     display: inline-block;
 }

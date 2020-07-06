@@ -19,6 +19,7 @@ export class ArenaService {
   playerNumber: number;
   isplayerTurn: boolean = true;
   canAccessColor: string;
+  
 
   constructor() {
     // this.targetCoordinateChange.subscribe((value) => {

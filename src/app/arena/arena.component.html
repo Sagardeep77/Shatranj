@@ -6,7 +6,7 @@
 
 
 <div class="container-fluid">
-    <div class="top-screen row">
+    <div class="top-screen row animated fadeInDown">
         <app-top-screen></app-top-screen>
         <!-- <div *ngIf="arenaStatus">
             <span style="float: left;">
@@ -19,40 +19,53 @@
 
     </div>
     <div class="row">
-        <div class="col-md-2 col-sm-2 left-screen">
+        <div class="col-md-2 col-sm-2 left-screen animated fadeInLeft">
             left-screen
         </div>
-        <div class="col-md-7 col-sm-7 chess-screen">
+        <div class="col-md-7 col-sm-7" style="width: 100%; padding: 0 0 0 0;">
+            <div class="chess-screen animated fadeInDown">
 
-            <div class="row active-screen text-center" style="width: 100%; margin: 0 0 0 0;">
-                <div class="col-md-5 col-sm-5 col-5 turn-screen">Your turn</div>
-                <div class="col-md-2 col-sm-2 col-2 timer-screen">
-                    <div class="timer-screen-div">
-                        <div class="diagonal-outline-left"></div>
-                        <div class="horizontal-outline">
-
+                <div class="row active-screen text-center" style="width: 100%; margin: 0 0 0 0;">
+                    <div class="col-md-5 col-sm-5 col-5 turn-screen">Your turn</div>
+                    <div class="col-md-2 col-sm-2 col-2 timer-screen">
+                        <div class="timer-screen-div">
+                            <!-- <div class="diagonal-outline-left"></div> -->
+                            <div class="horizontal-outline">
+                                <div id="timer">
+                                    <span id="minutes">{{minutes}}:</span>
+                                    <span id="seconds">{{seconds}}</span>
+                                </div>
+                            </div>
+                            <!-- <div class="diagonal-outline-right "></div> -->
                         </div>
-                        <div class="diagonal-outline-right "></div>
                     </div>
+                    <div class="col-md-5 col-sm-5 col-5 player-color-screen ">Black</div>
+
                 </div>
-                <div class="col-md-5 col-sm-5 col-5 player-color-screen ">Black</div>
+
+                <!-- <div class="row" style="width: 100%; margin: 0 0 0 0;">asdas</div> -->
+                <div *ngIf="arenaStatus else onePlayer" class="">
+                    <app-chess-board [playerNumber]="playerNo" [isDimension3D]="isDimension3D" [isClassic]="isClassic"></app-chess-board>
+                </div>
+                <ng-template #onePlayer>
+                    <h3>{{status}}</h3>
+                </ng-template>
 
             </div>
-
-            <!-- <div class="row" style="width: 100%; margin: 0 0 0 0;">asdas</div> -->
-            <div *ngIf="arenaStatus else onePlayer" class="">
-                <app-chess-board [playerNumber]="playerNo"></app-chess-board>
-            </div>
-            <ng-template #onePlayer>
-                <h3>{{status}}</h3>
-            </ng-template>
-
             <!--chess screen footer-->
-
+            <div *ngIf="arenaStatus" class="active-screen text-center animated fadeInUp" style="width: 50%; margin-left: auto; margin-right: auto;">
+                <div class="btn-chess-color"> <a class="btn btn-sm animated-button thar-two" [ngClass]="{'active':isClassic}" (click)="isClassic = true">Classic</a> </div>
+                <div class="btn-chess-color">
+                    <div class="btn-dimension"> <a class="btn btn-dim " [ngClass]="{'active':!isDimension3D}" (click)="isDimension3D = false;"> 2-D</a> </div>
+                    <div class="btn-dimension"> <a class="btn btn-dim" [ngClass]="{'active':isDimension3D}" (click)="isDimension3D = true;">3-D </a> </div>
+                </div>
+                <div class="btn-chess-color"> <a class="btn btn-sm animated-button thar-two" [ngClass]="{'active':!isClassic}" (click)="isClassic = false">Wooden</a> </div>
+            </div>
+            <!--chess screen footer ends-->
         </div>
-        <div class="col-md-3 col-sm-3 right-screen">
+        <div class="col-md-3 col-sm-3 right-screen animated fadeInRight">
             <div class="active-screen" style="width: 100%; margin: 0 0 0 0;">
-                <span>Chat</span><span>Tab 2</span>
+
             </div>
             <div class="show-content">
                 <app-chat-app [connected]="arenaStatus"></app-chat-app>

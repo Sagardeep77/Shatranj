@@ -20,12 +20,13 @@ import { ArenaComponent } from './arena/arena.component'
 // angular material modules
 import { MatSliderModule } from '@angular/material/slider';
 import {MatInputModule} from '@angular/material/input';
-import {DragDropModule} from '@angular/cdk/drag-drop';
 import { MatCardModule } from  '@angular/material/card';
 import { ChessPieceComponent } from './chess-piece/chess-piece.component';
 import { ArenaService } from './services/arena.service';
 import { ChatAppComponent } from './chat-app/chat-app.component';
 import { TopScreenComponent } from './top-screen/top-screen.component';
+import { SelectiondCardDirective } from './selectiond-card.directive';
+// import { ClipboardModule } from '@angular/cdk/clipboard'
 
 
 @NgModule({
@@ -38,6 +39,8 @@ import { TopScreenComponent } from './top-screen/top-screen.component';
     ChessPieceComponent,
     ChatAppComponent,
     TopScreenComponent,
+    SelectiondCardDirective,
+    // ClipboardModule
   ],
   imports: [
     BrowserModule,
@@ -48,7 +51,6 @@ import { TopScreenComponent } from './top-screen/top-screen.component';
     MatSliderModule,
     MatCardModule,
     MatInputModule,
-    DragDropModule,
     
   ],
   providers: [
