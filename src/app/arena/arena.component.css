@@ -72,7 +72,7 @@ html {
     margin: 0 0 0 0;
     /* border: 1px solid red; */
     color: gray;
-    height: 100%;
+    height: 90%;
     width: 100%;
 }
 
@@ -164,8 +164,6 @@ span {
 
 */
 
-@import url(https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css);
-@import url(https://fonts.googleapis.com/css?family=Lato:300,400,700);
 body {
     font-family: 'Lato', sans-serif;
     background: #353535;

@@ -44,7 +44,7 @@
                 </div>
 
                 <!-- <div class="row" style="width: 100%; margin: 0 0 0 0;">asdas</div> -->
-                <div *ngIf="arenaStatus else onePlayer" class="">
+                <div *ngIf="arenaStatus else onePlayer" class="" style="margin-top:1.5vh">
                     <app-chess-board [playerNumber]="playerNo" [isDimension3D]="isDimension3D" [isClassic]="isClassic"></app-chess-board>
                 </div>
                 <ng-template #onePlayer>
@@ -67,7 +67,7 @@
             <div class="active-screen" style="width: 100%; margin: 0 0 0 0;">
 
             </div>
-            <div class="show-content">
+            <div class="show-content" *ngIf="arenaStatus">
                 <app-chat-app [connected]="arenaStatus"></app-chat-app>
             </div>
         </div>

@@ -1,5 +1,5 @@
 <div class="scene">
-    <div class="box" [ngStyle]="{'transform':this.isDimension3D ? 'rotateX(30deg) translateZ(-10px)' : 'rotateX(0deg) translateZ(-10px)' }">
+    <div class="box" [ngStyle]="{'transform':isDimension3D ? 'rotateX(30deg) translateZ(-10px)' : 'rotateX(0deg) translateZ(-10px)' }">
         <div class="box__face box__face--front show-front">
             <div id="chessBoardBody" class="body-chess">
                 <div class="board container-fluid" [ngClass]="{'board-black':playerNumber===1, 'board-white':playerNumber===2}" #board>
