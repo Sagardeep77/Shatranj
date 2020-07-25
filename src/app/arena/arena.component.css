@@ -17,7 +17,7 @@ html {
 
 .container-fluid {
     width: 100vw;
-    height: 100vh;
+    min-height: 100vh;
     background-color: #222;
     overflow: hidden;
 }
@@ -38,6 +38,7 @@ html {
     padding: 0 0 0 0;
     /* border: 1px solid salmon; */
     border-bottom: 1px solid gray;
+    color: tomato;
     width: 100%;
 }
 

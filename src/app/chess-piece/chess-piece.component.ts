@@ -41,7 +41,7 @@ export class ChessPieceComponent implements OnInit {
       this.setChessPieceClass(this.chessPiece);
       let c = document.getElementsByClassName("chess-board-piece");
       if(c.length === 64){
-        this.gsapAnimationService.chessBoardAnimation(c);
+        // this.gsapAnimationService.chessBoardAnimation(c);
       }
     }
   }
