@@ -1,8 +1,9 @@
-import { Component, OnInit, ViewChild, ElementRef,  ViewChildren, } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef, ViewChildren, } from '@angular/core';
 import { DataCommunicationService } from '../services/data-communication.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { SocketService } from '../services/socket.service';
 import { GsapAnimationService } from '../gsap-animation.service';
+import { HttpClient } from '@angular/common/http';
 
 
 @Component({
@@ -15,28 +16,29 @@ export class HomePageComponent implements OnInit {
   linkSuccess: boolean;
   generatedLink: string;
   code: number;
-  isCardSelected:boolean = false;
+  isCardSelected: boolean = false;
   selectedCard: string;
 
   constructor(private activatedRoute: ActivatedRoute,
     private router: Router,
-    private socketService:SocketService,
-    private dataCommService:DataCommunicationService,
-    private gsapAnimation : GsapAnimationService,
-  ) { 
+    private socketService: SocketService,
+    private dataCommService: DataCommunicationService,
+    private gsapAnimation: GsapAnimationService,
+    private httpClient:HttpClient
+  ) {
   }
 
   ngOnInit() {
     this.linkSuccess = true;
-    
+
   }
 
-  ngAfterViewInit(){
-    
+  ngAfterViewInit() {
+
   }
 
-  ngOnChanges(){
-    
+  ngOnChanges() {
+
   }
 
   generateLink() {
@@ -49,17 +51,29 @@ export class HomePageComponent implements OnInit {
     // console.log(this.activatedRoute);
   }
 
-  selectCard(selectedCard){
+  selectCard(selectedCard) {
     this.isCardSelected = true;
-    this.selectedCard = selectedCard; 
-    
-    
+    this.selectedCard = selectedCard;
+    if (this.selectedCard === 'Bot') {
+      this.loadScripts();
+    }
+
+  }
+  private loadScripts() {
+    this.init();
+
   }
 
+  init() {
+    this.router.navigate(['arena', "00"], { relativeTo: this.activatedRoute });
+
+  }
+ 
   copyLink(event) {
     /* Get the text field */
     var copyText = document.getElementsByName("inputLink")[0] as HTMLInputElement;
     copyText.select();
     document.execCommand("copy");
   }
+
 }

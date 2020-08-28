@@ -1,9 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Renderer2, Inject, ɵConsole } from '@angular/core';
 import { SocketService } from '../services/socket.service';
 import { ArenaService } from '../services/arena.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { DataCommunicationService } from '../services/data-communication.service';
 import { TimelineMax, CSSPlugin, ScrollToPlugin, Draggable } from "gsap/all";
+import { DOCUMENT } from '@angular/common';
 
 
 @Component({
@@ -20,7 +21,7 @@ export class ArenaComponent implements OnInit {
   status: string;
   playerNo: number;
   joinedFirst: boolean = false;
-  isClassic:boolean = true;
+  isClassic:boolean = false;
   isDimension3D: boolean = false;
 
   constructor(private socketService: SocketService,
@@ -32,6 +33,10 @@ export class ArenaComponent implements OnInit {
 
   async ngOnInit() {
     let code = <number>this.activatedRoute.snapshot.params.code;
+    if(code == 0){
+     
+      return ;
+    }
     let connect = await this.socketService.connect(code);
     if (connect == "Connected") {
       this.socketService.activeConnections().subscribe((data) => {

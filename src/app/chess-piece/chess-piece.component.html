@@ -1,6 +1,16 @@
-<div *ngIf="chessPiece; else nothing" class="{{chessPieceClass}}" [ngClass]="{'chess-piece-rotate':playerNumber(),'chess-place-available':isAvailablePlace}" (mouseenter)="pieceHover($event)" (mouseleave)="pieceHover($event)" [draggable]="canDrag" (dragstart)="handleDragStart($event)"
+<!-- <div *ngIf="chessPiece; else nothing" class="{{chessPieceClass}}" [ngClass]="{'chess-piece-rotate':playerNumber(),'chess-place-available':isAvailablePlace}" (mouseenter)="pieceHover($event)" (mouseleave)="pieceHover($event)" [draggable]="canDrag" (dragstart)="handleDragStart($event)"
     (dragenter)="handleDragEnter($event)" (dragover)="handleDragOver($event)" #draggableDiv>
 
+</div> -->
+<div *ngIf="chessPiece; else nothing" [ngClass]="{'chess-piece-rotate':playerNumber(),'chess-place-available':isAvailablePlace}" (mouseenter)="pieceHover($event)" (mouseleave)="pieceHover($event)" [draggable]="canDrag" (dragstart)="handleDragStart($event)"
+    (dragenter)="handleDragEnter($event)" (dragover)="handleDragOver($event)" #draggableDiv>
+    <p>
+        {{chessPiece.sanCoordinate}}
+    </p>
+    --
+    <p>
+        {{chessPiece.returnCharacter()}}
+    </p>
 </div>
 
 <ng-template #nothing>

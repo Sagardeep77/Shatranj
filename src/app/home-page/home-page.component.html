@@ -73,7 +73,7 @@
         <!-- <div class="col-md-4">a</div> -->
         <div class="card-sm__container col-md-8">
 
-            <div class="row cards-wrapper text-center" *ngIf="!isCardSelected">
+            <div class="row cards-wrapper text-center" *ngIf="!isCardSelected" (click)="selectCard('Bot')">
                 <div id="cardBot" appSelectiondCard class="col-sm-4 col-md-4 ">
                     <mat-card class="card-sm">
                         <mat-card-content class="card">

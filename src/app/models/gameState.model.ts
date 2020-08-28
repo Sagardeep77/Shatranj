@@ -5,6 +5,7 @@ export class ChessPiece {
     private moveCount: number;
     public prevX:number;
     public prevY:number;
+    public sanCoordinate : string;
     private movementArray;
     public availableMove:boolean;
     constructor(public type: string,
@@ -16,9 +17,56 @@ export class ChessPiece {
         this.moveCount = 0;
         this.prevX = this.x;
         this.prevY = this.y;
+        this.sanCoordinate = String.fromCharCode(this.y+96) + this.x;
         this.movementArray= new Array<any> ();
         this.availableMove = false;
     }
+
+    
+    returnCharacter(){
+        if(this.color === "white"){
+            if(this.type == "rook"){
+                return 'R';
+            }
+            else if(this.type == "knight"){
+                return 'N';
+            }
+            else if(this.type == "bishop"){
+                return 'B';
+            }
+            else if(this.type == "king"){
+                return 'K';
+            }
+            else if(this.type == "queen"){
+                return 'Q';
+            }
+            else if(this.type == "pawn"){
+                return 'P';
+            }
+        }
+        else{
+            if(this.type == "rook"){
+                return 'r';
+            }
+            else if(this.type == "knight"){
+                return 'n';
+            }
+            else if(this.type == "bishop"){
+                return 'b';
+            }
+            else if(this.type == "king"){
+                return 'k';
+            }
+            else if(this.type == "queen"){
+                return 'q';
+            }
+            else if(this.type == "pawn"){
+                return 'p';
+            }
+        }
+        return '';
+    }
+
     increaseMoveCount(){
         this.moveCount++;
     }
@@ -43,7 +91,13 @@ export class ChessPiece {
         this.prevY = this.y;
         this.x = x;
         this.y =y;
+        this.sanCoordinate = String.fromCharCode(y+96) + x;
     }
+
+    // SAN -> Standard Algebric notation
+
+    
+
 
 }
 
@@ -210,6 +264,16 @@ export class ChessBoardState {
         }
     }
 
+    // SAN -> Standard Algebric notation
+
+    getSanRankCoordinate(chessPiece:ChessPiece){
+        return String.fromCharCode(chessPiece.y+96) + chessPiece.x; 
+    }
+
+    getCoordinate(chessPiece:ChessPiece){
+        return String.fromCharCode(chessPiece.y+96) + chessPiece.x; 
+    }
+
     insertDefeatedPiece(chessPiece:ChessPiece){
         if(chessPiece.color ==="black"){
             this.defeatedPiecesBlack.push(chessPiece);
@@ -226,6 +290,7 @@ export class ChessBoardState {
     getDefeatedPiecesBlack(){
         return this.defeatedPiecesBlack;
     }
+    
 }
 
 

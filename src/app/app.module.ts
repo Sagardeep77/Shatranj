@@ -1,5 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
+import { NgModule, Renderer2 } from '@angular/core';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
@@ -26,6 +26,7 @@ import { ArenaService } from './services/arena.service';
 import { ChatAppComponent } from './chat-app/chat-app.component';
 import { TopScreenComponent } from './top-screen/top-screen.component';
 import { SelectiondCardDirective } from './selectiond-card.directive';
+
 // import { ClipboardModule } from '@angular/cdk/clipboard'
 
 
@@ -56,7 +57,9 @@ import { SelectiondCardDirective } from './selectiond-card.directive';
   providers: [
     DataCommunicationService,
     SocketService,
-    ArenaService
+    ArenaService,
+    
+   
     
   ],
   bootstrap: [AppComponent]

@@ -134,7 +134,7 @@ export class ChessPieceComponent implements OnInit {
           scaleX: 1,
           scaleY: 1
         });
-
+        console.log(this.arenaService.chess.moves({square : this.chessPiece.sanCoordinate}));
         this.arenaService.erasePieceMoves(this.chessPiece);
       }
     }
