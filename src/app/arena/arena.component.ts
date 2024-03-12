@@ -23,12 +23,11 @@ export class ArenaComponent implements OnInit {
   joinedFirst: boolean = false;
   isClassic:boolean = false;
   isDimension3D: boolean = false;
-
   constructor(private socketService: SocketService,
     private activatedRoute: ActivatedRoute,
     private dataCommService: DataCommunicationService,
     private route: Router,
-    private arenaService: ArenaService) {
+    public arenaService: ArenaService) {
   }
 
   async ngOnInit() {
@@ -45,25 +44,33 @@ export class ArenaComponent implements OnInit {
           this.arenaStatus = false;
           this.status = "Waiting for player 2"
           this.joinedFirst = true;
+          this.socketService.sendMessage(this.status)
         }
         else {
           this.arenaStatus = true;
+        
           if (this.joinedFirst === true) {
             this.playerNo = 1;
+            this.socketService.sendMessage("Joined " + this.playerNo)
+
           }
           else {
             this.playerNo = 2;
+            // this.socketService.onMessage("Joined " + this.playerNo)
           }
           setInterval(()=>{
             this.makeTimer()
           },1000);
+          
         }
       });
 
 
       this.socketService.onPlayerLeft().subscribe((data) => {
         this.status = "Player " + data + " left";
+        this.socketService.sendMessage("player left")
       })
+      
 
     }
     else

@@ -7,15 +7,8 @@
 
 <div class="container-fluid">
     <div class="top-screen row animated fadeInDown">
-        <app-top-screen></app-top-screen>
-        <!-- <div *ngIf="arenaStatus">
-            <span style="float: left;">
-                <h3>Player # {{playerNo}}</h3>
-            </span>
-            <span style="float: right;">
-                <h3>chatting</h3>
-            </span>
-        </div> -->
+        <app-top-screen [playerNumber]="playerNo" [isPlayerTurn]="arenaService.isplayerTurn"></app-top-screen>
+        
 
     </div>
     <div class="row">
@@ -26,7 +19,7 @@
             <div class="chess-screen animated fadeInDown">
 
                 <div class="row active-screen text-center" style="width: 100%; margin: 0 0 0 0;">
-                    <div class="col-md-5 col-sm-5 col-5 turn-screen">Your turn</div>
+                    <div class="col-md-5 col-sm-5 col-5 turn-screen">small letters</div>
                     <div class="col-md-2 col-sm-2 col-2 timer-screen">
                         <div class="timer-screen-div">
                             <!-- <div class="diagonal-outline-left"></div> -->
@@ -39,7 +32,7 @@
                             <!-- <div class="diagonal-outline-right "></div> -->
                         </div>
                     </div>
-                    <div class="col-md-5 col-sm-5 col-5 player-color-screen ">Black</div>
+                    <div class="col-md-5 col-sm-5 col-5 player-color-screen ">CAPITAL LETTERS</div>
 
                 </div>
 

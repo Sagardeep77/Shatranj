@@ -27,10 +27,10 @@ export class ChessBoardComponent implements OnInit, OnChanges {
   ngOnInit() {
     this.socketService.getOpponentTurn().subscribe((data: ChessPiece) => {
       this.opponentMove(data);
+
     });
 
     if (this.playerNumber === 1) {
-
       this.canAccessColor = "black";
     }
     if (this.playerNumber === 2) {
@@ -140,6 +140,7 @@ export class ChessBoardComponent implements OnInit, OnChanges {
     console.log(this.arenaService.generateFEN(this.arenaService.chessBoardState));
 
     this.arenaService.isplayerTurn = true;
+    this.i
 
   }
 
