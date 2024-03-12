@@ -137,3 +137,7 @@
 .chess-place-available {
     border: 3px solid saddlebrown;
 }
+.chess-piece{
+    color: rgb(84, 62, 47);
+    font-size: 30px;
+}
