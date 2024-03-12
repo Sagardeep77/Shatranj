@@ -9,8 +9,8 @@ export class DataCommunicationService {
   canUseCode:boolean=false;
   constructor(private httpClient:HttpClient) { }
 
-  checkCodeUrl="http://localhost:4000/?code=";
-  webSocketUrl="http://localhost:4000"
+  checkCodeUrl="https://shatranj-backend-9wbyg500w-sagardeep77.vercel.app?code=";
+  webSocketUrl="http://shatranj-backend-9wbyg500w-sagardeep77.vercel.app"
   
 
   async checkCode(code):Promise<boolean>{
