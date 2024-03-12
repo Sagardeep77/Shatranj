@@ -1,19 +1,28 @@
-<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
+    integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
 
-<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css"
+    integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
 
-<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/malihu-custom-scrollbar-plugin/3.1.5/jquery.mCustomScrollbar.min.css">
+<link rel="stylesheet" type="text/css"
+    href="https://cdnjs.cloudflare.com/ajax/libs/malihu-custom-scrollbar-plugin/3.1.5/jquery.mCustomScrollbar.min.css">
 
 
 <div class="container-fluid">
     <div class="top-screen row animated fadeInDown">
         <app-top-screen [playerNumber]="playerNo" [isPlayerTurn]="arenaService.isplayerTurn"></app-top-screen>
-        
+
 
     </div>
     <div class="row">
         <div class="col-md-2 col-sm-2 left-screen animated fadeInLeft">
-            Side-panel
+            Chess State
+
+            <div class="p-lg-1">
+                <code>
+                <pre class="text-success">{{arenaService.chess.ascii()}}</pre>
+           </code>
+            </div>
         </div>
         <div class="col-md-7 col-sm-7" style="width: 100%; padding: 0 0 0 0;">
             <div class="chess-screen animated fadeInDown">
@@ -38,7 +47,8 @@
 
                 <!-- <div class="row" style="width: 100%; margin: 0 0 0 0;">asdas</div> -->
                 <div *ngIf="arenaStatus else onePlayer" class="" style="margin-top:1.5vh">
-                    <app-chess-board [playerNumber]="playerNo" [isDimension3D]="isDimension3D" [isClassic]="isClassic"></app-chess-board>
+                    <app-chess-board [playerNumber]="playerNo" [isDimension3D]="isDimension3D"
+                        [isClassic]="isClassic"></app-chess-board>
                 </div>
                 <ng-template #onePlayer>
                     <h3>{{status}}</h3>
@@ -46,13 +56,18 @@
 
             </div>
             <!--chess screen footer-->
-            <div *ngIf="arenaStatus" class="active-screen text-center animated fadeInUp" style="width: 50%; margin-left: auto; margin-right: auto;">
-                <div class="btn-chess-color"> <a class="btn btn-sm animated-button thar-two" [ngClass]="{'active':isClassic}" (click)="isClassic = true">Classic</a> </div>
+            <div *ngIf="arenaStatus" class="active-screen text-center animated fadeInUp"
+                style="width: 50%; margin-left: auto; margin-right: auto;">
+                <div class="btn-chess-color"> <a class="btn btn-sm animated-button thar-two"
+                        [ngClass]="{'active':isClassic}" (click)="isClassic = true">Classic</a> </div>
                 <div class="btn-chess-color">
-                    <div class="btn-dimension"> <a class="btn btn-dim " [ngClass]="{'active':!isDimension3D}" (click)="isDimension3D = false;"> 2-D</a> </div>
-                    <div class="btn-dimension"> <a class="btn btn-dim" [ngClass]="{'active':isDimension3D}" (click)="isDimension3D = true;">3-D </a> </div>
+                    <div class="btn-dimension"> <a class="btn btn-dim " [ngClass]="{'active':!isDimension3D}"
+                            (click)="isDimension3D = false;"> 2-D</a> </div>
+                    <div class="btn-dimension"> <a class="btn btn-dim" [ngClass]="{'active':isDimension3D}"
+                            (click)="isDimension3D = true;">3-D </a> </div>
                 </div>
-                <div class="btn-chess-color"> <a class="btn btn-sm animated-button thar-two" [ngClass]="{'active':!isClassic}" (click)="isClassic = false">Wooden</a> </div>
+                <div class="btn-chess-color"> <a class="btn btn-sm animated-button thar-two"
+                        [ngClass]="{'active':!isClassic}" (click)="isClassic = false">Wooden</a> </div>
             </div>
             <!--chess screen footer ends-->
         </div>

@@ -140,7 +140,6 @@ export class ChessBoardComponent implements OnInit, OnChanges {
     console.log(this.arenaService.generateFEN(this.arenaService.chessBoardState));
 
     this.arenaService.isplayerTurn = true;
-    this.i
 
   }
 

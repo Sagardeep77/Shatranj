@@ -156,6 +156,7 @@ export class ArenaService{
         }
       }
     }
+    
     console.log(this.chess.ascii());
   }
 
