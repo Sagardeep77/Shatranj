@@ -12,8 +12,8 @@ export class DataCommunicationService {
   // checkCodeUrl="http://localhost:4000?code=";
   // webSocketUrl="http://localhost:4000"
   
-  checkCodeUrl="https://shatranj-backend.vercel.app/?code=";
-  webSocketUrl="https://shatranj-backend.vercel.app/"
+  checkCodeUrl="https://shatranj-backend-purple-moon-6895.fly.dev/?code=";
+  webSocketUrl="https://shatranj-backend-purple-moon-6895.fly.dev/"
   
   async checkCode(code):Promise<boolean>{
     const response = await this.httpClient.get(this.checkCodeUrl+code).toPromise().then((response)=>{

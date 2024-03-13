@@ -38,6 +38,7 @@ export class ArenaComponent implements OnInit {
     }
     let connect = await this.socketService.connect(code);
     if (connect == "Connected") {
+      console.log("Web socket connection established")
       this.socketService.activeConnections().subscribe((data) => {
         this.activePlayers = data;
         if (this.activePlayers.activePlayers == 1) {
