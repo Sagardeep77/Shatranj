@@ -7,10 +7,12 @@ import { Component, Input, OnInit } from '@angular/core';
 })
 export class TopScreenComponent implements OnInit {
   @Input() playerNumber: number;
-  @Input() isPlayerTurn:number;
+  @Input() currentPlayerNumber:number;
+
   constructor() { }
 
   ngOnInit() {
+    
   }
 
 }

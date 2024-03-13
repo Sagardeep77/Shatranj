@@ -92,6 +92,7 @@ export class ChessBoardComponent implements OnInit, OnChanges {
 
         this.arenaService.erasePieceMoves(this.selectedChessPiece);
         this.arenaService.isplayerTurn = false;
+        this.arenaService.currentPlayerNumber = this.arenaService.playerNumber === 1 ? 2 : 1;
         console.log("Black defeated -> ", this.arenaService.chessBoardState.getDefeatedPiecesBlack());
         console.log("White defeated -> ", this.arenaService.chessBoardState.getDefeatedPiecesWhite());
 
@@ -140,6 +141,7 @@ export class ChessBoardComponent implements OnInit, OnChanges {
     console.log(this.arenaService.generateFEN(this.arenaService.chessBoardState));
 
     this.arenaService.isplayerTurn = true;
+    this.arenaService.currentPlayerNumber = this.arenaService.playerNumber;
 
   }
 

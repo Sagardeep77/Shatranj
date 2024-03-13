@@ -31,6 +31,7 @@ export class ArenaService{
   isplayerTurn: boolean = true;
   canAccessColor: string;
   chessPieceMoves: any;
+  currentPlayerNumber:number ;
 
   private onStockfishMessageSubscription: Subscription;
 

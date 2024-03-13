@@ -45,18 +45,16 @@ export class ArenaComponent implements OnInit {
           this.arenaStatus = false;
           this.status = "Waiting for player 2"
           this.joinedFirst = true;
-          this.socketService.sendMessage(this.status)
         }
         else {
           this.arenaStatus = true;
-        
           if (this.joinedFirst === true) {
             this.playerNo = 1;
             this.socketService.sendMessage("Joined " + this.playerNo)
-
           }
           else {
             this.playerNo = 2;
+            this.arenaService.currentPlayerNumber = 2;
             // this.socketService.onMessage("Joined " + this.playerNo)
           }
           setInterval(()=>{
@@ -69,7 +67,6 @@ export class ArenaComponent implements OnInit {
 
       this.socketService.onPlayerLeft().subscribe((data) => {
         this.status = "Player " + data + " left";
-        this.socketService.sendMessage("player left")
       })
       
 
