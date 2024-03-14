@@ -78,7 +78,7 @@
     height: 9vh;
     border: 1px solid #663300;
     overflow: visible;
-    background-color: black;
+    background-color: rgb(91, 91, 91);
 }
 
 .row-classic:nth-child(even) span:nth-child(odd) {
@@ -86,7 +86,7 @@
     height: 9vh;
     border: 1px solid #663300;
     overflow: visible;
-    background-color: black;
+    background-color: rgb(91, 91, 91);
 }
 
 .row-classic:nth-child(even) span:nth-child(even) {
