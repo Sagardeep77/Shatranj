@@ -1,7 +1,27 @@
 import { ArrayType } from '@angular/compiler';
+// import WhiteRook from 'src\assets\chess-pieces\black\tabler--chess-rook.svg';
+// import BlackRook from './../../assets/svgs/white/rook-filled.svg';
+// import BlackRookImg from './../../assets/images/white/rook.png';
 
+const ChessIconImgPath = {
+    "WhiteRook" : './../../assets/images/white/rook.png',
+    "WhiteKnight" : './../../assets/images/white/knight.png',
+    "WhiteBishop" : './../../assets/images/white/bishop.png',
+    "WhiteKing" : './../../assets/images/white/king.png',
+    "WhiteQueen" : './../../assets/images/white/queen.png',
+    "WhitePawn" : './../../assets/images/white/pawn.png',
+    "BlackRook" : './../../assets/images/black/rook.png',
+    "BlackKnight" : './../../assets/images/black/knight.png',
+    "BlackBishop" : './../../assets/images/black/bishop.png',
+    "BlackKing" : './../../assets/images/black/king.png',
+    "BlackQueen" : './../../assets/images/black/queen.png',
+    "BlackPawn" : './../../assets/images/black/pawn.png',
+}
+
+// import WhiteRook from './../chess-piece/images/white/';
+ 
 export class ChessPiece {
-    // here we are assuming x as row number and y as column number
+   // here we are assuming x as row number and y as column number
     private moveCount: number;
     public prevX:number;
     public prevY:number;
@@ -26,42 +46,42 @@ export class ChessPiece {
     returnCharacter(){
         if(this.color === "white"){
             if(this.type == "rook"){
-                return 'R';
+                return ChessIconImgPath.WhiteRook;
             }
             else if(this.type == "knight"){
-                return 'N';
+                return ChessIconImgPath.WhiteKnight;
             }
             else if(this.type == "bishop"){
-                return 'B';
+                return ChessIconImgPath.WhiteBishop;
             }
             else if(this.type == "king"){
-                return 'K';
+                return ChessIconImgPath.WhiteKing;
             }
             else if(this.type == "queen"){
-                return 'Q';
+                return ChessIconImgPath.WhiteQueen;
             }
             else if(this.type == "pawn"){
-                return 'P';
+                return ChessIconImgPath.WhitePawn;
             }
         }
         else{
             if(this.type == "rook"){
-                return 'r';
+                return ChessIconImgPath.BlackRook;
             }
             else if(this.type == "knight"){
-                return 'n';
+                return ChessIconImgPath.BlackKnight;
             }
             else if(this.type == "bishop"){
-                return 'b';
+                return ChessIconImgPath.BlackBishop;
             }
             else if(this.type == "king"){
-                return 'k';
+                return ChessIconImgPath.BlackKing;
             }
             else if(this.type == "queen"){
-                return 'q';
+                return ChessIconImgPath.BlackQueen;
             }
             else if(this.type == "pawn"){
-                return 'p';
+                return ChessIconImgPath.BlackPawn;
             }
         }
         return '';
